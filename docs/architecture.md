@@ -101,16 +101,6 @@ Each template is a standalone Next.js application under `templates/`:
 
 Templates are configured entirely via environment variables, making them trivially reusable for any client.
 
-### Sanity CMS
-
-Each client gets their own Sanity project (separate data isolation). The shared schema (`apps/cms/schemas/`) defines:
-
-- `page` — Website pages with sections
-- `section` — Reusable content blocks
-- `media` — Image assets
-- `siteSettings` — Site-wide settings (name, colors, contact)
-- `seo` — Shared SEO object type
-
 ## Security
 
 - API routes that perform privileged operations require `Authorization: Bearer <INTERNAL_API_SECRET>`

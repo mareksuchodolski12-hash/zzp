@@ -84,13 +84,6 @@ jobs:
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
           echo "Created Vercel project: $PROJECT_ID"
 
-      - name: Initialize Sanity CMS
-        run: |
-          cd apps/cms
-          SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }} \
-          SANITY_ORGANIZATION_ID=${{ secrets.SANITY_ORGANIZATION_ID }} \
-          node scripts/init-client-cms.mjs "${CLIENT_SLUG}" "${BUSINESS_NAME}"
-
       - name: Register DNS via Cloudflare
         run: |
           node scripts/register-dns.mjs \
@@ -132,8 +125,7 @@ jobs:
           fi
           echo "Rollback commands:"
           echo "1) Verify DNS records for ${DOMAIN}"
-          echo "2) Verify Sanity project setup for ${CLIENT_SLUG}"
-          echo "3) Retry workflow_dispatch with same ORDER_ID after fix"
+          echo "2) Retry workflow_dispatch with same ORDER_ID after fix"
 
       - name: Mark order as failed
         if: ${{ failure() && env.ORDER_ID != '' }}

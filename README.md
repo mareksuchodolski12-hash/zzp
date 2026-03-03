@@ -12,7 +12,6 @@ ZZP Website Platform automates the delivery of professional websites for freelan
 zzp/
 ├── apps/
 │   ├── web/                    # Next.js 15 marketing site + API backend
-│   └── cms/                    # Sanity CMS studio + schemas
 ├── templates/
 │   ├── business/               # Business / consultant template
 │   ├── freelancer/             # Freelancer / creative template
@@ -35,7 +34,6 @@ zzp/
 │       └── provision-client.yml # Automated client provisioning
 ├── scripts/
 │   ├── generate-client.mjs     # Generate a client website locally
-│   ├── sync-cms-schema.mjs     # Sync CMS schema to a project
 │   └── register-dns.mjs        # Register DNS + SSL via Cloudflare
 └── docs/
     ├── architecture.md
@@ -85,15 +83,6 @@ cp .env.example .env.local
 npm run dev
 ```
 
-For CMS Studio:
-
-```bash
-cd apps/cms
-cp .env.example .env.local
-# Fill in SANITY_STUDIO_PROJECT_ID and dataset
-npm run dev
-```
-
 ### Environment Variables
 
 Copy `apps/web/.env.example` to `apps/web/.env.local` and fill in:
@@ -102,8 +91,6 @@ Copy `apps/web/.env.example` to `apps/web/.env.local` and fill in:
 |---|---|
 | `DATABASE_URL` | Neon PostgreSQL connection string (fallback) |
 | `SUPABASE_DATABASE_URL` | Supabase PostgreSQL connection string (primary) |
-| `SANITY_STUDIO_PROJECT_ID` | Sanity Studio project ID (CMS app) |
-| `SANITY_STUDIO_DATASET` | Sanity Studio dataset (usually `production`) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID |
 | `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset (frontend) |
 | `MOLLIE_API_KEY` | Mollie API key (use `test_` prefix for testing) |

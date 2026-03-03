@@ -50,7 +50,7 @@ export async function SanityDemo() {
           <p className="text-sm text-gray-700 font-semibold mb-2">📌 To use Sanity integration:</p>
           <ol className="text-sm text-gray-600 space-y-1 ml-4 list-decimal">
             <li>Configure real Sanity project ID and dataset in .env.local</li>
-            <li>Start Sanity Studio: <code className="bg-white px-2 py-1 rounded">npm run dev</code> in apps/cms</li>
+            <li>Manage content in your existing Sanity Studio project</li>
             <li>Add content via Sanity editor</li>
             <li>This component will automatically fetch and display it</li>
           </ol>
