@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 
 const templates: Array<{
   id: string;
+  previewSlug: string;
   name: string;
   description: string;
   tags: string[];
@@ -17,30 +18,34 @@ const templates: Array<{
 }> = [
   {
     id: 'business',
-    name: 'Business',
+    previewSlug: 'budowlanka',
+    name: 'Fachowiec budowlany i remontowy',
     description:
-      'Clean and professional template for consultants, coaches and business service providers.',
-    tags: ['Consultant', 'Coach', 'Zakelijk'],
-    previewUrl: '/templates/business',
+      'Dla klusjesmanów, aannemerów, timmermanów, stolarzy, malarzy i monterów, którzy chcą szybko zdobywać nowe zlecenia online.',
+    tags: ['Klusjesman', 'Aannemer', 'Timmerman'],
+    previewUrl: '/preview/budowlanka',
     thumbnailUrl: '/images/template-business.jpg',
     color: 'blue',
   },
   {
     id: 'freelancer',
-    name: 'Freelancer',
+    previewSlug: 'instalator',
+    name: 'Instalator techniczny',
     description:
-      'Modern portfolio-style template for designers, developers and creative professionals.',
-    tags: ['Designer', 'Developer', 'Creatief'],
-    previewUrl: '/templates/freelancer',
+      'Idealny dla elektryków, hydraulików, instalatorów CV i montażystów paneli solarnych nastawionych na leady i zaufanie.',
+    tags: ['Elektryk', 'Hydraulik', 'Instalator CV'],
+    previewUrl: '/preview/instalator',
     thumbnailUrl: '/images/template-freelancer.jpg',
     color: 'purple',
   },
   {
     id: 'portfolio',
-    name: 'Portfolio',
-    description: 'Elegant template to showcase your work and attract new clients.',
-    tags: ['Fotograaf', 'Schrijver', 'Portfolio'],
-    previewUrl: '/templates/portfolio',
+    previewSlug: 'ogrodnik',
+    name: 'Usługi zewnętrzne i ogrodowe',
+    description:
+      'Stworzony dla hovenierów, ogrodników, landscaperów i serwisu zewnętrznego, by pokazać realizacje i zamieniać wejścia w zapytania.',
+    tags: ['Hovenier', 'Ogrodnik', 'Landscaper'],
+    previewUrl: '/preview/ogrodnik',
     thumbnailUrl: '/images/template-portfolio.jpg',
     color: 'green',
   },
@@ -52,10 +57,10 @@ export default function TemplatesPage() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-20 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            Kies een professioneel template voor jouw ZZP website
+            Wybierz premium szablon dla swojej działalności ZZP
           </h1>
           <p className="text-lg md:text-xl text-gray-600">
-            Moderne, snelle en volledig aanpasbare templates. Perfect voor elke branche.
+            Trzy najczęstsze i najbardziej dochodowe branże ZZP w Holandii, gotowe do szybkiej sprzedaży online.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">

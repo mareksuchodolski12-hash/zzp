@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 
 interface TemplateCardProps {
   id: string;
+  previewSlug?: string;
   name: string;
   description: string;
   tags: string[];
@@ -27,6 +28,7 @@ const colorClasses: Record<string, { badge: string }> = {
 
 export function TemplateCard({
   id,
+  previewSlug,
   name,
   description,
   tags,
@@ -35,6 +37,7 @@ export function TemplateCard({
   color,
 }: TemplateCardProps) {
   const colors = colorClasses[color];
+  const resolvedPreviewSlug = previewSlug ?? id;
 
   return (
     <div className="group rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -62,7 +65,7 @@ export function TemplateCard({
         </div>
 
         <div className="flex gap-3">
-          <Link href={`/preview/${id}`} className="flex-1">
+          <Link href={`/preview/${resolvedPreviewSlug}`} className="flex-1">
             <Button className="w-full text-sm group/preview transition-all hover:scale-105 hover:shadow-lg" size="sm">
               Zapowiedź
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/preview:translate-x-1" />
@@ -70,7 +73,7 @@ export function TemplateCard({
           </Link>
           <Link href={`/order?template=${id}`} className="flex-1">
             <Button variant="outline" className="w-full text-sm transition-all hover:scale-105 hover:shadow-lg" size="sm">
-              Kies template
+              Wybierz szablon
             </Button>
           </Link>
         </div>
