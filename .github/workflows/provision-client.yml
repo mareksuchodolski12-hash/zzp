@@ -121,3 +121,24 @@ jobs:
           echo "Client ${BUSINESS_NAME} provisioned successfully!"
           echo "Domain: ${DOMAIN}"
           echo "Vercel Project: ${PROJECT_ID}"
+
+      - name: Rollback checklist
+        if: ${{ failure() }}
+        run: |
+          echo "Provision failed. Executing rollback checklist..."
+          if [ -n "${PROJECT_ID}" ] && [ "${PROJECT_ID}" != "null" ]; then
+            curl -sf -X DELETE "https://api.vercel.com/v9/projects/${PROJECT_ID}" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
+          fi
+          echo "Rollback commands:"
+          echo "1) Verify DNS records for ${DOMAIN}"
+          echo "2) Verify Sanity project setup for ${CLIENT_SLUG}"
+          echo "3) Retry workflow_dispatch with same ORDER_ID after fix"
+
+      - name: Mark order as failed
+        if: ${{ failure() && env.ORDER_ID != '' }}
+        run: |
+          curl -sf -X PATCH "${{ secrets.APP_URL }}/api/orders?id=${ORDER_ID}" \
+            -H "Authorization: Bearer ${{ secrets.INTERNAL_API_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"status": "failed"}'

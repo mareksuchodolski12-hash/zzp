@@ -1,3 +1,4 @@
+import { resolveDatabaseUrl } from './utils';
 export type OrderPlan = 'starter' | 'professional' | 'business';
 export type TemplateType = 'business' | 'freelancer' | 'portfolio';
 export type OrderStatus =
@@ -141,7 +142,7 @@ export async function getMolliePayment(paymentId: string): Promise<MolliePayment
 
 async function persistOrder(order: Order): Promise<void> {
   const { neon } = await import('@neondatabase/serverless');
-  const sql = neon(process.env.DATABASE_URL!);
+  const sql = neon(resolveDatabaseUrl());
 
   await sql`
     INSERT INTO orders (
@@ -159,7 +160,7 @@ async function persistOrder(order: Order): Promise<void> {
 
 async function fetchOrderFromDb(id: string): Promise<Order | null> {
   const { neon } = await import('@neondatabase/serverless');
-  const sql = neon(process.env.DATABASE_URL!);
+  const sql = neon(resolveDatabaseUrl());
 
   const rows = await sql`SELECT * FROM orders WHERE id = ${id} LIMIT 1`;
 
@@ -186,7 +187,7 @@ async function fetchOrderFromDb(id: string): Promise<Order | null> {
 
 async function updateOrderInDb(id: string, updates: Partial<Order>): Promise<void> {
   const { neon } = await import('@neondatabase/serverless');
-  const sql = neon(process.env.DATABASE_URL!);
+  const sql = neon(resolveDatabaseUrl());
 
   await sql`
     UPDATE orders SET

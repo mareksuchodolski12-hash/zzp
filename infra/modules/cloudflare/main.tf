@@ -12,6 +12,10 @@ variable "cloudflare_api_token" {
   description = "Cloudflare API token"
   type        = string
   sensitive   = true
+  validation {
+    condition     = length(trimspace(var.cloudflare_api_token)) > 20 && var.cloudflare_api_token != "temporary-bypass"
+    error_message = "cloudflare_api_token must be a valid operations token."
+  }
 }
 
 variable "zone_id" {

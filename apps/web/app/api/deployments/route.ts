@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { triggerDeployment } from '@/lib/deployments';
+import { resolveModeratorToken } from '@/lib/utils';
 
 const DeploymentSchema = z.object({
   orderId: z.string().uuid(),
@@ -15,9 +16,36 @@ const DeploymentSchema = z.object({
   }),
 });
 
+const AUTH_FAILURE_WINDOW_MS = 60_000;
+const AUTH_FAILURE_MAX_LOGS_PER_WINDOW = 5;
+let authFailureWindowStart = 0;
+let authFailureLogCount = 0;
+
+function logAuthFailure(request: NextRequest, method: 'POST' | 'GET') {
+  const now = Date.now();
+  if (now - authFailureWindowStart > AUTH_FAILURE_WINDOW_MS) {
+    authFailureWindowStart = now;
+    authFailureLogCount = 0;
+  }
+  if (authFailureLogCount < AUTH_FAILURE_MAX_LOGS_PER_WINDOW) {
+    authFailureLogCount += 1;
+    console.warn(`[${method} /api/deployments] Unauthorized access attempt`, {
+      ip: request.headers.get('x-forwarded-for') ?? 'unknown',
+      userAgent: request.headers.get('user-agent') ?? 'unknown',
+    });
+  }
+}
+
 export async function POST(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.INTERNAL_API_SECRET}`) {
+  let moderatorToken: string;
+  try {
+    moderatorToken = resolveModeratorToken();
+  } catch {
+    return NextResponse.json({ success: false, message: 'Server misconfiguration' }, { status: 500 });
+  }
+  if (authHeader !== `Bearer ${moderatorToken}`) {
+    logAuthFailure(request, 'POST');
     return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
   }
 
@@ -42,7 +70,14 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.INTERNAL_API_SECRET}`) {
+  let moderatorToken: string;
+  try {
+    moderatorToken = resolveModeratorToken();
+  } catch {
+    return NextResponse.json({ success: false, message: 'Server misconfiguration' }, { status: 500 });
+  }
+  if (authHeader !== `Bearer ${moderatorToken}`) {
+    logAuthFailure(request, 'GET');
     return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
   }
 
