@@ -1,4 +1,4 @@
-import { getMolliePayment, updateOrderStatus } from './orders';
+import { getMolliePayment, getOrder, updateOrderStatus } from './orders';
 
 export async function processMollieWebhook(paymentId: string): Promise<void> {
   const payment = await getMolliePayment(paymentId);
@@ -32,13 +32,29 @@ export async function processMollieWebhook(paymentId: string): Promise<void> {
 }
 
 async function triggerProvisioning(orderId: string): Promise<void> {
+  const order = await getOrder(orderId);
+  if (!order) {
+    throw new Error(`Order ${orderId} not found`);
+  }
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/deployments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.INTERNAL_API_SECRET}`,
     },
-    body: JSON.stringify({ orderId }),
+    body: JSON.stringify({
+      orderId,
+      template: order.template,
+      domain: order.domain,
+      clientData: {
+        businessName: order.businessName,
+        fullName: order.fullName,
+        email: order.email,
+        phone: order.phone,
+        description: order.description,
+      },
+    }),
   });
 
   if (!response.ok) {
