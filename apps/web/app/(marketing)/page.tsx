@@ -1,6 +1,9 @@
 import { HeroSection } from '@/components/marketing/hero-section';
 import { SocialProofSection } from '@/components/marketing/social-proof-section';
+import { ProcessSection } from '@/components/marketing/process-section';
 import { FeaturesSection } from '@/components/marketing/features-section';
+import { SimplePricingSection } from '@/components/marketing/simple-pricing-section';
+import { FaqSection } from '@/components/marketing/faq-section';
 import { TestimonialsSection } from '@/components/marketing/testimonials-section';
 import { CtaSection } from '@/components/marketing/cta-section';
 import type { Metadata } from 'next';
@@ -16,7 +19,10 @@ export default function HomePage() {
     <>
       <HeroSection />
       <SocialProofSection />
+      <ProcessSection />
       <FeaturesSection />
+      <SimplePricingSection />
+      <FaqSection />
       <TestimonialsSection />
       <CtaSection />
     </>
