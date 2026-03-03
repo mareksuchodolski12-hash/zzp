@@ -34,7 +34,7 @@ const templates: Array<{
     previewSlug: 'instalator',
     name: 'Technische Installateur',
     description:
-      'SEO-template voor elektricien zzp, loodgieter zzp, cv-monteur, zonnepanelen installateur en warmtepomp installateur binnen een installatiebedrijf zzp in Nederland.',
+      'Perfect voor elektricien zzp, loodgieter zzp, cv-monteur, zonnepanelen installateur en warmtepomp installateur; gemaakt voor elk installatiebedrijf zzp in Nederland dat meer aanvragen wil.',
     tags: ['Elektricien', 'Loodgieter', 'CV-monteur', 'Zonnepanelen'],
     previewLabel: 'Voorbeeld bekijken',
     selectLabel: 'Kies dit template',
