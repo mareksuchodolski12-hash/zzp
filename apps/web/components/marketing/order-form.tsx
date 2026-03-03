@@ -203,7 +203,7 @@ export function OrderForm({
       </div>
 
       <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-        <Label htmlFor="requiredPages">Welke pagina's heb je nodig?</Label>
+        <Label htmlFor="requiredPages">Welke pagina&apos;s heb je nodig?</Label>
         <Textarea
           id="requiredPages"
           placeholder="Bijv. Home, Over ons, Diensten, Cases, Contact, FAQ, Privacy, Voorwaarden."
