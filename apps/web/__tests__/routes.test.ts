@@ -26,6 +26,7 @@ describe('static routes', () => {
     expect(termsPage).toContain('Algemene voorwaarden');
   });
 
+# copilot/update-garantie-beschikbaarheid-section
   it('simple pricing section includes garantie and beschikbaarheid messaging', () => {
     const pricingSection = readFileSync(join(marketingComponentsDir, 'simple-pricing-section.tsx'), 'utf-8');
 
@@ -37,5 +38,23 @@ describe('static routes', () => {
     expect(pricingSection).toContain('Alleen voor de eerste 50 klanten.');
     expect(pricingSection).toContain('Nog maar {availableSpots} van de {PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.');
     expect(pricingSection).toContain('Controleer beschikbaarheid');
+#
+  it('social proof sections include updated stats and examples', () => {
+    const socialProofSection = readFileSync(
+      join(process.cwd(), 'components', 'marketing', 'social-proof-section.tsx'),
+      'utf-8'
+    );
+    const testimonialsSection = readFileSync(
+      join(process.cwd(), 'components', 'marketing', 'testimonials-section.tsx'),
+      'utf-8'
+    );
+
+    expect(socialProofSection).toContain('500+ gelanceerde websites');
+    expect(socialProofSection).toContain('4.9/5 gemiddelde beoordeling');
+    expect(socialProofSection).toContain('48 uur gemiddelde oplevering');
+    expect(testimonialsSection).toContain('LenaSinger.nl');
+    expect(testimonialsSection).toContain('MSHydroPro.nl');
+    expect(testimonialsSection).toContain('SystemPilot.nl');
+# master
   });
 });
