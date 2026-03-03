@@ -2,61 +2,62 @@ import { PricingCard } from '@/components/marketing/pricing-card';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'Transparent pricing for every ZZP professional. Choose the plan that fits your needs.',
+  title: 'Cennik',
+  description: 'Przejrzyste ceny i jednorazowa inwestycja dla profesjonalnej strony internetowej.',
 };
 
 const plans = [
   {
-    name: 'Starter',
+    name: 'Rozrusznik',
     price: 299,
-    description: 'Perfect for ZZP starters who need a clean online presence.',
+    description: 'Idealny start dla freelancerów, którzy chcą szybko ruszyć z profesjonalną stroną.',
     features: [
-      'Professional website template',
-      'Custom domain setup',
-      'SSL certificate',
-      '5 pages',
-      'Contact form',
-      'Basic SEO setup',
-      '1 year hosting included',
+      'Profesjonalny szablon strony',
+      'Konfiguracja własnej domeny',
+      'Certyfikat SSL',
+      'Do 5 podstron',
+      'Formularz kontaktowy',
+      'Podstawowe SEO',
+      'Hosting na 1 rok',
     ],
-    cta: 'Bestellen',
+    cta: 'Zamówienie',
     href: '/order?plan=starter',
     highlighted: false,
   },
   {
-    name: 'Professional',
+    name: 'Profesjonalny',
     price: 499,
-    description: 'For established professionals who want to stand out.',
+    description: 'Najlepszy wybór dla marek osobistych, które chcą wyróżnić się jakością i efektem premium.',
     features: [
-      'Everything in Starter',
-      'Up to 10 pages',
-      'Blog / portfolio section',
-      'Google Analytics integration',
-      'Advanced SEO setup',
-      'Social media links',
-      'Priority support',
-      '2 years hosting included',
+      'Wszystko z planu Rozrusznik',
+      'Do 10 podstron',
+      'Sekcja blog/portfolio',
+      'Integracja Google Analytics',
+      'Rozszerzone SEO',
+      'Linki social media',
+      'Priorytetowe wsparcie',
+      'Hosting na 2 lata',
     ],
-    cta: 'Meest populair',
+    cta: 'Zamówienie',
     href: '/order?plan=professional',
     highlighted: true,
+    badge: 'Najpopularniejsze',
   },
   {
-    name: 'Business',
+    name: 'Biznes',
     price: 799,
-    description: 'Full-featured solution for growing freelance businesses.',
+    description: 'Kompletny pakiet dla rozwijających się biznesów, które potrzebują pełnej elastyczności.',
     features: [
-      'Everything in Professional',
-      'Unlimited pages',
-      'Online booking / intake form',
-      'WhatsApp chat button',
-      'Cookie consent banner',
-      'Google My Business setup',
-      'Custom email address',
-      'Dedicated account manager',
+      'Wszystko z planu Profesjonalny',
+      'Nielimitowane podstrony',
+      'Formularz rezerwacji / intake',
+      'Przycisk kontaktu WhatsApp',
+      'Baner zgód cookies',
+      'Konfiguracja Google My Business',
+      'Własny adres e-mail',
+      'Dedykowany opiekun',
     ],
-    cta: 'Bestellen',
+    cta: 'Zamówienie',
     href: '/order?plan=business',
     highlighted: false,
   },
@@ -64,12 +65,12 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Transparante Prijzen</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Eenmalige investering. Geen verborgen kosten. Jouw website live binnen 24 uur.
+        <div className="text-center mb-16 md:mb-20 animate-in fade-in slide-in-from-bottom-4 duration-500 motion-reduce:animate-none">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Przejrzyste ceny</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Jednorazowa inwestycja. Bez ukrytych kosztów. Twoja strona internetowa uruchomiona w ciągu 24 godzin.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -77,9 +78,11 @@ export default function PricingPage() {
             <PricingCard key={plan.name} {...plan} />
           ))}
         </div>
-        <p className="text-center text-gray-500 mt-12 text-sm">
-          Alle prijzen zijn exclusief 21% BTW. Eenmalige kosten, geen maandelijkse verplichtingen.
-        </p>
+        <div className="text-center mt-14 md:mt-16 space-y-2 text-sm text-gray-600">
+          <p>Wszystkie ceny zawierają 21% VAT</p>
+          <p>Jednorazowa opłata — brak miesięcznych zobowiązań</p>
+          <p>Hosting i domena w cenie</p>
+        </div>
       </div>
     </section>
   );
