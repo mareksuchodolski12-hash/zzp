@@ -9,6 +9,8 @@ interface TemplateCardProps {
   name: string;
   description: string;
   tags: string[];
+  previewLabel?: string;
+  selectLabel?: string;
   previewUrl: string;
   thumbnailUrl: string;
   color: 'blue' | 'purple' | 'green';
@@ -32,6 +34,8 @@ export function TemplateCard({
   name,
   description,
   tags,
+  previewLabel,
+  selectLabel,
   previewUrl,
   thumbnailUrl,
   color,
@@ -67,13 +71,13 @@ export function TemplateCard({
         <div className="flex gap-3">
           <Link href={`/preview/${resolvedPreviewSlug}`} className="flex-1">
             <Button className="w-full text-sm group/preview transition-all hover:scale-105 hover:shadow-lg" size="sm">
-              Zapowiedź
+              {previewLabel ?? 'Zapowiedź'}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/preview:translate-x-1" />
             </Button>
           </Link>
           <Link href={`/order?template=${id}`} className="flex-1">
             <Button variant="outline" className="w-full text-sm transition-all hover:scale-105 hover:shadow-lg" size="sm">
-              Wybierz szablon
+              {selectLabel ?? 'Wybierz szablon'}
             </Button>
           </Link>
         </div>
