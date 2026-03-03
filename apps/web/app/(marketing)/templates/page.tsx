@@ -48,15 +48,17 @@ const templates: Array<{
 
 export default function TemplatesPage() {
   return (
-    <section className="py-20">
+    <section className="py-24 md:py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Website Templates</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Kies een template die past bij jouw vakgebied. Wij personaliseren hem met jouw inhoud.
+        <div className="text-center mb-20 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            Kies een professioneel template voor jouw ZZP website
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600">
+            Moderne, snelle en volledig aanpasbare templates. Perfect voor elke branche.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
           {templates.map((template) => (
             <TemplateCard key={template.id} {...template} />
           ))}

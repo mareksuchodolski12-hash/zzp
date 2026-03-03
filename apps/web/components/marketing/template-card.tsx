@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -12,21 +13,15 @@ interface TemplateCardProps {
   color: 'blue' | 'purple' | 'green';
 }
 
-const colorClasses: Record<string, { bg: string; text: string; badge: string }> = {
+const colorClasses: Record<string, { badge: string }> = {
   blue: {
-    bg: 'bg-blue-100',
-    text: 'text-blue-700',
-    badge: 'bg-blue-100 text-blue-700',
+    badge: 'bg-blue-50 text-blue-700 border-blue-100',
   },
   purple: {
-    bg: 'bg-purple-100',
-    text: 'text-purple-700',
-    badge: 'bg-purple-100 text-purple-700',
+    badge: 'bg-purple-50 text-purple-700 border-purple-100',
   },
   green: {
-    bg: 'bg-green-100',
-    text: 'text-green-700',
-    badge: 'bg-green-100 text-green-700',
+    badge: 'bg-green-50 text-green-700 border-green-100',
   },
 };
 
@@ -36,27 +31,30 @@ export function TemplateCard({
   description,
   tags,
   previewUrl,
+  thumbnailUrl,
   color,
 }: TemplateCardProps) {
   const colors = colorClasses[color];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow group">
-      <div className={cn('h-48 flex items-center justify-center', colors.bg)}>
-        <span className={cn('text-6xl font-bold opacity-20', colors.text)}>
-          {name.charAt(0)}
-        </span>
+    <div className="group rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="rounded-xl border border-gray-100 bg-gray-50 p-2 shadow-sm overflow-hidden">
+        <div
+          aria-label={`${name} template preview`}
+          className="h-44 w-full rounded-lg bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-[1.02]"
+          style={{ backgroundImage: `url(${thumbnailUrl})` }}
+        />
       </div>
 
-      <div className="p-6">
+      <div className="p-4 pb-2">
         <h3 className="text-xl font-bold text-gray-900 mb-2">{name}</h3>
-        <p className="text-sm text-gray-600 mb-4 leading-relaxed">{description}</p>
+        <p className="text-sm text-gray-600 mb-5 leading-relaxed">{description}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
           {tags.map((tag) => (
             <span
               key={tag}
-              className={cn('text-xs px-2 py-1 rounded-full font-medium', colors.badge)}
+              className={cn('text-xs px-3 py-1 rounded-full border font-medium', colors.badge)}
             >
               {tag}
             </span>
@@ -65,13 +63,14 @@ export function TemplateCard({
 
         <div className="flex gap-3">
           <Link href={previewUrl} className="flex-1">
-            <Button variant="outline" className="w-full text-sm" size="sm">
+            <Button className="w-full text-sm group/preview transition-all hover:scale-105 hover:shadow-lg" size="sm">
               Preview
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/preview:translate-x-1" />
             </Button>
           </Link>
           <Link href={`/order?template=${id}`} className="flex-1">
-            <Button className="w-full text-sm" size="sm">
-              Selecteren
+            <Button variant="outline" className="w-full text-sm transition-all hover:scale-105 hover:shadow-lg" size="sm">
+              Kies template
             </Button>
           </Link>
         </div>
