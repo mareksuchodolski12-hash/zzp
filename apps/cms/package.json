@@ -5,13 +5,14 @@
   "scripts": {
     "dev": "sanity dev",
     "build": "sanity build",
-    "lint": "eslint .",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint sanity.config.ts schemas scripts --ext .ts,.tsx,.mjs",
     "type-check": "tsc --noEmit",
     "deploy": "sanity deploy",
     "schema:extract": "sanity schema extract",
     "init-client": "node scripts/init-client-cms.mjs"
   },
   "dependencies": {
+    "@sanity/vision": "^3.99.0",
     "next-sanity": "^9.8.16",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
