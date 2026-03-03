@@ -6,7 +6,15 @@ export const metadata: Metadata = {
   description: 'Browse our professionally designed website templates for ZZP professionals.',
 };
 
-const templates = [
+const templates: Array<{
+  id: string;
+  name: string;
+  description: string;
+  tags: string[];
+  previewUrl: string;
+  thumbnailUrl: string;
+  color: 'blue' | 'purple' | 'green';
+}> = [
   {
     id: 'business',
     name: 'Business',
