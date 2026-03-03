@@ -35,7 +35,7 @@ describe('static routes', () => {
     expect(pricingSection).toContain('We nemen maximaal 5 projecten per dag aan om kwaliteit te garanderen.');
     expect(pricingSection).toContain('Tijdelijk aanbod: €400 promotieprijs — normaal €499.');
     expect(pricingSection).toContain('Alleen voor de eerste 50 klanten.');
-    expect(pricingSection).toContain('Nog maar {availableSpots} van de 50 promotieplekken beschikbaar.');
+    expect(pricingSection).toContain('Nog maar {availableSpots} van de {PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.');
     expect(pricingSection).toContain('Controleer beschikbaarheid');
   });
 });

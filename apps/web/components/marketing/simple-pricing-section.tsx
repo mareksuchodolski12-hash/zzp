@@ -12,17 +12,23 @@ const features = [
   'Website live binnen 24 uur',
   'Mobiel geoptimaliseerd',
 ];
+const PROMOTION_SPOTS_TOTAL = 50;
+const MIN_PROMOTION_SPOTS_AVAILABLE = 1;
+const PROMOTION_SPOT_DROP_INTERVAL_MS = 1000 * 60 * 60 * 3;
+const PROMOTION_SPOT_CHECK_INTERVAL_MS = 1000 * 60 * 60;
 
 export function SimplePricingSection() {
-  const [availableSpots, setAvailableSpots] = useState(50);
+  const [availableSpots, setAvailableSpots] = useState(PROMOTION_SPOTS_TOTAL);
 
   useEffect(() => {
     const updateAvailableSpots = () => {
-      setAvailableSpots(Math.max(1, 50 - (Math.floor(Date.now() / (1000 * 60 * 60 * 3)) % 50)));
+      const countdownStartTimestamp = Date.UTC(2026, 2, 1);
+      const intervalsPassed = Math.max(0, Math.floor((Date.now() - countdownStartTimestamp) / PROMOTION_SPOT_DROP_INTERVAL_MS));
+      setAvailableSpots(Math.max(MIN_PROMOTION_SPOTS_AVAILABLE, PROMOTION_SPOTS_TOTAL - intervalsPassed));
     };
 
     updateAvailableSpots();
-    const interval = setInterval(updateAvailableSpots, 1000 * 60 * 60);
+    const interval = setInterval(updateAvailableSpots, PROMOTION_SPOT_CHECK_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
 
@@ -80,8 +86,13 @@ export function SimplePricingSection() {
                 <br />
                 Alleen voor de eerste 50 klanten.
               </p>
-              <p className="text-sm font-medium text-blue-700">
-                Nog maar {availableSpots} van de 50 promotieplekken beschikbaar.
+              <p
+                aria-live="polite"
+                aria-atomic="true"
+                aria-label={`Nog maar ${availableSpots} van de ${PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.`}
+                className="text-sm font-medium text-blue-700"
+              >
+                Nog maar {availableSpots} van de {PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.
               </p>
             </div>
           </div>
