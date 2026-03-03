@@ -1,0 +1,1 @@
+export { BusinessContact } from './index';

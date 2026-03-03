@@ -1,0 +1,1 @@
+export { PortfolioGallery } from './index';

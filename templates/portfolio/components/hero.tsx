@@ -1,0 +1,1 @@
+export { PortfolioHero } from './index';
