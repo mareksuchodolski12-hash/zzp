@@ -4,6 +4,7 @@ import { join } from 'node:path';
 
 describe('static routes', () => {
   const appDir = join(process.cwd(), 'app');
+  const marketingComponentsDir = join(process.cwd(), 'components', 'marketing');
 
   it('preview layout does not define nested html/body tags', () => {
     const previewLayout = readFileSync(join(appDir, '(preview)', 'layout.tsx'), 'utf-8');
@@ -23,5 +24,18 @@ describe('static routes', () => {
 
     expect(privacyPage).toContain('Privacybeleid');
     expect(termsPage).toContain('Algemene voorwaarden');
+  });
+
+  it('simple pricing section includes garantie and beschikbaarheid messaging', () => {
+    const pricingSection = readFileSync(join(marketingComponentsDir, 'simple-pricing-section.tsx'), 'utf-8');
+
+    expect(pricingSection).toContain('Garantie');
+    expect(pricingSection).toContain('Niet tevreden? 100% geld terug binnen 48 uur — zonder vragen.');
+    expect(pricingSection).toContain('Beschikbaarheid');
+    expect(pricingSection).toContain('We nemen maximaal 5 projecten per dag aan om kwaliteit te garanderen.');
+    expect(pricingSection).toContain('Tijdelijk aanbod: €400 promotieprijs — normaal €499.');
+    expect(pricingSection).toContain('Alleen voor de eerste 50 klanten.');
+    expect(pricingSection).toContain('Nog maar {availableSpots} van de 50 promotieplekken beschikbaar.');
+    expect(pricingSection).toContain('Controleer beschikbaarheid');
   });
 });

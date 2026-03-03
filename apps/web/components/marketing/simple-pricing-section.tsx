@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -11,6 +14,18 @@ const features = [
 ];
 
 export function SimplePricingSection() {
+  const [availableSpots, setAvailableSpots] = useState(50);
+
+  useEffect(() => {
+    const updateAvailableSpots = () => {
+      setAvailableSpots(Math.max(1, 50 - (Math.floor(Date.now() / (1000 * 60 * 60 * 3)) % 50)));
+    };
+
+    updateAvailableSpots();
+    const interval = setInterval(updateAvailableSpots, 1000 * 60 * 60);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4">
@@ -47,15 +62,28 @@ export function SimplePricingSection() {
             {/* CTA Button */}
             <Link href="/order" className="block">
               <Button size="lg" className="w-full text-base group transition-all hover:scale-105 hover:shadow-lg">
-                Bestel nu
+                Controleer beschikbaarheid
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
-            {/* Footer text */}
-            <p className="text-center text-sm text-gray-500 mt-6">
-              Website live binnen 24 uur. Geld-terug garantie.
-            </p>
+            <div className="text-center mt-6 space-y-3">
+              <p className="text-sm text-gray-700">
+                <span className="font-semibold block">Garantie</span>
+                Niet tevreden? 100% geld terug binnen 48 uur — zonder vragen.
+              </p>
+              <p className="text-sm text-gray-700">
+                <span className="font-semibold block">Beschikbaarheid</span>
+                We nemen maximaal 5 projecten per dag aan om kwaliteit te garanderen.
+                <br />
+                Tijdelijk aanbod: €400 promotieprijs — normaal €499.
+                <br />
+                Alleen voor de eerste 50 klanten.
+              </p>
+              <p className="text-sm font-medium text-blue-700">
+                Nog maar {availableSpots} van de 50 promotieplekken beschikbaar.
+              </p>
+            </div>
           </div>
         </div>
       </div>
