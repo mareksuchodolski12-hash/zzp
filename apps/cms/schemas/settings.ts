@@ -90,4 +90,4 @@ export const siteSettingsType = defineType({
       media: 'logo',
     },
   },
-});
+} as any);
