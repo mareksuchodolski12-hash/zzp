@@ -41,8 +41,9 @@ export async function POST(request: NextRequest) {
   let moderatorToken: string;
   try {
     moderatorToken = resolveModeratorToken();
-  } catch {
-    return NextResponse.json({ success: false, message: 'Server misconfiguration' }, { status: 500 });
+  } catch (error) {
+    console.error('[POST /api/deployments] Missing moderator token configuration', error);
+    return NextResponse.json({ success: false, message: 'Service temporarily unavailable' }, { status: 503 });
   }
   if (authHeader !== `Bearer ${moderatorToken}`) {
     logAuthFailure(request, 'POST');
@@ -73,8 +74,9 @@ export async function GET(request: NextRequest) {
   let moderatorToken: string;
   try {
     moderatorToken = resolveModeratorToken();
-  } catch {
-    return NextResponse.json({ success: false, message: 'Server misconfiguration' }, { status: 500 });
+  } catch (error) {
+    console.error('[GET /api/deployments] Missing moderator token configuration', error);
+    return NextResponse.json({ success: false, message: 'Service temporarily unavailable' }, { status: 503 });
   }
   if (authHeader !== `Bearer ${moderatorToken}`) {
     logAuthFailure(request, 'GET');

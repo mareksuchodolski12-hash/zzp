@@ -51,6 +51,12 @@ describe('resolveModeratorToken', () => {
     expect(resolveModeratorToken()).toBe('internal-token');
     delete process.env.INTERNAL_API_SECRET;
   });
+
+  it('throws when both tokens are missing', () => {
+    delete process.env.MODERATOR_TOKEN;
+    delete process.env.INTERNAL_API_SECRET;
+    expect(() => resolveModeratorToken()).toThrow('Missing MODERATOR_TOKEN or INTERNAL_API_SECRET');
+  });
 });
 
 describe('resolveDatabaseUrl', () => {
@@ -67,5 +73,11 @@ describe('resolveDatabaseUrl', () => {
     process.env.DATABASE_URL = 'postgresql://neon';
     expect(resolveDatabaseUrl()).toBe('postgresql://neon');
     delete process.env.DATABASE_URL;
+  });
+
+  it('throws when both database urls are missing', () => {
+    delete process.env.SUPABASE_DATABASE_URL;
+    delete process.env.DATABASE_URL;
+    expect(() => resolveDatabaseUrl()).toThrow('Missing SUPABASE_DATABASE_URL or DATABASE_URL');
   });
 });

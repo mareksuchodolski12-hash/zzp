@@ -112,7 +112,7 @@ jobs:
       - name: Update order status
         run: |
           curl -sf -X PATCH "${{ secrets.APP_URL }}/api/orders?id=${ORDER_ID}" \
-            -H "Authorization: Bearer ${{ secrets.INTERNAL_API_SECRET }}" \
+            -H "Authorization: Bearer ${{ secrets.MODERATOR_TOKEN || secrets.INTERNAL_API_SECRET }}" \
             -H "Content-Type: application/json" \
             -d '{"status": "deployed"}'
 
@@ -127,7 +127,7 @@ jobs:
         run: |
           echo "Provision failed. Executing rollback checklist..."
           if [ -n "${PROJECT_ID}" ] && [ "${PROJECT_ID}" != "null" ]; then
-            curl -sf -X DELETE "https://api.vercel.com/v9/projects/${PROJECT_ID}" \
+            curl -fS -X DELETE "https://api.vercel.com/v9/projects/${PROJECT_ID}" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
           fi
           echo "Rollback commands:"
@@ -139,6 +139,6 @@ jobs:
         if: ${{ failure() && env.ORDER_ID != '' }}
         run: |
           curl -sf -X PATCH "${{ secrets.APP_URL }}/api/orders?id=${ORDER_ID}" \
-            -H "Authorization: Bearer ${{ secrets.INTERNAL_API_SECRET }}" \
+            -H "Authorization: Bearer ${{ secrets.MODERATOR_TOKEN || secrets.INTERNAL_API_SECRET }}" \
             -H "Content-Type: application/json" \
             -d '{"status": "failed"}'

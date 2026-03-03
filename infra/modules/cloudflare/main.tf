@@ -13,8 +13,8 @@ variable "cloudflare_api_token" {
   type        = string
   sensitive   = true
   validation {
-    condition     = length(trimspace(var.cloudflare_api_token)) > 20 && var.cloudflare_api_token != "temporary-bypass"
-    error_message = "cloudflare_api_token must be a valid operations token."
+    condition     = can(regex("^[A-Za-z0-9_-]{30,80}$", trimspace(var.cloudflare_api_token)))
+    error_message = "cloudflare_api_token must contain 30-80 letters, numbers, hyphens or underscores."
   }
 }
 
