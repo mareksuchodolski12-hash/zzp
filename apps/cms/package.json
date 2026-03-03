@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "sanity dev",
     "build": "sanity build",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint sanity.config.ts schemas scripts --ext .ts,.tsx,.mjs",
     "type-check": "tsc --noEmit",
     "deploy": "sanity deploy",
     "schema:extract": "sanity schema extract",
