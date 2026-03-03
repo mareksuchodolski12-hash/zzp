@@ -16,6 +16,7 @@ const bouwTemplate = {
   tags: ['zzp bouw', 'aannemer', 'klusjesman', 'timmerman', 'schilder', 'monteur', 'renovatie', 'verbouwing', 'bouwbedrijf zzp'],
   previewUrl: '/preview/budowlanka',
   thumbnailUrl: '/images/template-business.jpg',
+  color: 'blue' as const,
 };
 
 const templates: Array<{
