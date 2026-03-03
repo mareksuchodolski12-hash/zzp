@@ -1,26 +1,26 @@
 const testimonials = [
   {
-    name: 'Sophie van der Berg',
-    role: 'Zelfstandig coach',
+    name: 'LenaSinger.nl',
+    role: 'Voorbeeld: Zangeres & Vocal Coach — klaar in 36 uur',
     content:
-      'Mijn website staat er perfect uit. Binnen een dag was alles geregeld en ik kon meteen klanten doorverwijzen naar mijn nieuwe site. Heel fijn!',
-    avatar: 'SB',
+      'Professionele branding, foto’s, teksten en een moderne uitstraling die klanten aantrekt.',
+    avatar: 'LS',
     rating: 5,
   },
   {
-    name: 'Mark Jansen',
-    role: 'Freelance developer',
+    name: 'MSHydroPro.nl',
+    role: 'Voorbeeld: Loodgieter & Installateur — klaar in 41 uur',
     content:
-      'Als developer weet ik hoe lastig het kan zijn om je eigen website professioneel te krijgen. Deze service nam alle technische rompslomp weg. Aanrader.',
-    avatar: 'MJ',
+      'Technische diensten helder uitgelegd, sterke call‑to‑actions en een betrouwbare uitstraling.',
+    avatar: 'MH',
     rating: 5,
   },
   {
-    name: 'Fatima El Amrani',
-    role: 'ZZP boekhouder',
+    name: 'SystemPilot.nl',
+    role: 'Voorbeeld: IT‑specialist & Systeembeheer — klaar in 44 uur',
     content:
-      'Eindelijk een website die er echt professioneel uitziet. Mijn klanten reageren positief en ik krijg er meer leads door. De prijs is ook heel eerlijk.',
-    avatar: 'FE',
+      'Strakke zakelijke website met duidelijke diensten en conversiegerichte structuur.',
+    avatar: 'SP',
     rating: 5,
   },
 ];
