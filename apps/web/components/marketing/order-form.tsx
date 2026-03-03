@@ -138,7 +138,7 @@ export function OrderForm({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-250">
           <Label htmlFor="phone">Numer telefonu</Label>
           <Input id="phone" type="tel" placeholder="+31 6 12 34 56 78" {...register('phone')} />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone.message}</p>}
@@ -152,7 +152,9 @@ export function OrderForm({
       </div>
 
       <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-        <Label htmlFor="description">Opis firmy <span className="text-gray-400 font-normal">(opcjonalnie)</span></Label>
+        <Label htmlFor="description">
+          Opis firmy <span className="text-gray-400 font-normal">(opcjonalnie)</span>
+        </Label>
         <Textarea
           id="description"
           placeholder="Beschrijf kort wat je doet, voor wie en wat jou onderscheidt..."
