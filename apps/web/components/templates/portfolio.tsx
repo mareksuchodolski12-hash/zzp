@@ -1,9 +1,9 @@
-const businessName = process.env.NEXT_PUBLIC_BUSINESS_NAME ?? 'Fotograaf';
-const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'info@portfolio.nl';
+const businessName = process.env.NEXT_PUBLIC_BUSINESS_NAME ?? 'GroenMeester Hovenier';
+const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'info@groenmeester.nl';
 const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? '+31 6 00 00 00 00';
 const description =
   process.env.NEXT_PUBLIC_DESCRIPTION ??
-  'Ik ben een professionele fotograaf en visueel storyteller. Met een oog voor detail en een passie voor mensen vertel ik jouw verhaal in beeld.';
+  'Hovenier zzp en tuinman zzp voor strak tuinonderhoud, slimme tuinrenovatie en complete buitenservice in Nederland.';
 
 export function PortfolioTemplate() {
   return (
@@ -12,34 +12,35 @@ export function PortfolioTemplate() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <span className="text-xl font-semibold text-gray-900 tracking-tight">{businessName}</span>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#portfolio" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Portfolio</a>
-            <a href="#over-mij" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Over mij</a>
-            <a href="#contact" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Contact</a>
+            <a href="#portfolio" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Realisaties</a>
+            <a href="#over-mij" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Pakketten</a>
+            <a href="#contact" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Servicegebied</a>
           </div>
         </div>
       </nav>
 
-      <section className="py-24 md:py-40 bg-white text-center">
+      <section className="py-24 md:py-44 bg-white text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <p className="text-green-600 text-sm font-medium tracking-widest uppercase mb-4">Portfolio</p>
-          <h1 className="text-6xl md:text-8xl font-light text-gray-900 tracking-tight mb-6">
+          <p className="text-green-600 text-sm font-semibold tracking-[0.18em] uppercase mb-5">Seizoensplanning voorjaar 2026</p>
+          <h1 className="text-5xl md:text-7xl font-light text-gray-900 tracking-tight mb-6 leading-tight">
             {businessName}
           </h1>
-          <p className="text-xl text-gray-500 max-w-xl mx-auto">{description}</p>
+          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">{description}</p>
         </div>
       </section>
 
       <section id="portfolio" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-light text-gray-900 mb-12 text-center">Selectie</h2>
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4 text-center">Galerie van recente tuinprojecten</h2>
+          <p className="text-gray-500 text-center max-w-3xl mx-auto mb-12">Praktische voorbeelden van landscaping zzp: van moderne stadstuinen tot complete tuinrenovatie en onderhoud van bedrijfstuinen.</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { title: 'Portret', size: 'tall', bg: 'bg-gray-200' },
-              { title: 'Landschap', size: 'wide', bg: 'bg-gray-300' },
-              { title: 'Architectuur', size: 'square', bg: 'bg-gray-400' },
-              { title: 'Editorial', size: 'square', bg: 'bg-gray-200' },
-              { title: 'Events', size: 'tall', bg: 'bg-gray-300' },
-              { title: 'Product', size: 'wide', bg: 'bg-gray-400' },
+              { title: 'Voorjaar: gazonherstel & snoeiwerk', size: 'tall', bg: 'bg-gray-200' },
+              { title: 'Tuinrenovatie met keramische tegels', size: 'wide', bg: 'bg-gray-300' },
+              { title: 'Buitenservice voor VvE binnentuin', size: 'square', bg: 'bg-gray-400' },
+              { title: 'Onderhoudsvrij bordersysteem', size: 'square', bg: 'bg-gray-200' },
+              { title: 'Landscaping zzp voor nieuwbouw', size: 'tall', bg: 'bg-gray-300' },
+              { title: 'Seizoensonderhoud voor zakelijke tuin', size: 'wide', bg: 'bg-gray-400' },
             ].map((item) => (
               <div
                 key={item.title}
@@ -62,16 +63,21 @@ export function PortfolioTemplate() {
             <div className="w-48 h-48 md:w-full md:h-64 bg-gray-100 rounded-2xl" />
           </div>
           <div className="md:w-2/3">
-            <h2 className="text-3xl font-light text-gray-900 mb-6">Over mij</h2>
-            <p className="text-gray-600 leading-relaxed">{description}</p>
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">Pakketten voor tuinonderhoud en renovatie</h2>
+            <p className="text-gray-600 leading-relaxed mb-6">Kies een pakket dat past bij je tuin en planning. Elk pakket is ontwikkeld voor hovenier zzp opdrachten in Nederland met duidelijke vaste afspraken.</p>
+            <ul className="space-y-3 text-gray-700">
+              <li><strong>Basis Onderhoud</strong> — periodiek tuinonderhoud, snoeiwerk en onkruidbeheer.</li>
+              <li><strong>Renovatie Plus</strong> — complete tuinrenovatie met beplantingsplan en materiaaladvies.</li>
+              <li><strong>Buitenservice Pro</strong> — doorlopende buitenservice voor particulieren en zakelijke locaties.</li>
+            </ul>
           </div>
         </div>
       </section>
 
       <section id="contact" className="py-20 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-light mb-4">Samenwerken?</h2>
-          <p className="text-gray-400 mb-8">Neem gerust contact op voor een vrijblijvend gesprek.</p>
+          <h2 className="text-4xl font-light mb-4">Servicegebied: Noord- en Zuid-Holland + Utrecht</h2>
+          <p className="text-gray-400 mb-8">Actief als tuinman zzp in Randstad voor snelle intake, seizoenswerk en vaste onderhoudsroutes.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={`mailto:${email}`}
