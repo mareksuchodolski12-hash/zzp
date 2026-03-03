@@ -26,9 +26,14 @@ type OrderFormData = z.infer<typeof OrderSchema>;
 interface OrderFormProps {
   defaultPlan?: string;
   defaultTemplate?: string;
+  planLocked?: boolean;
 }
 
-export function OrderForm({ defaultPlan = 'starter', defaultTemplate = 'business' }: OrderFormProps) {
+export function OrderForm({
+  defaultPlan = 'starter',
+  defaultTemplate = 'business',
+  planLocked = false,
+}: OrderFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -76,13 +81,17 @@ export function OrderForm({ defaultPlan = 'starter', defaultTemplate = 'business
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="plan">Pakket</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <Label htmlFor="plan">Pakiet</Label>
           <select
             id="plan"
             {...register('plan')}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-readonly={planLocked}
+            tabIndex={planLocked ? -1 : 0}
+            className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              planLocked ? 'pointer-events-none bg-gray-50 text-gray-500' : ''
+            }`}
           >
             <option value="starter">Starter — €299</option>
             <option value="professional">Professional — €499</option>
@@ -91,8 +100,8 @@ export function OrderForm({ defaultPlan = 'starter', defaultTemplate = 'business
           {errors.plan && <p className="text-xs text-red-500">{errors.plan.message}</p>}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="template">Template</Label>
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-75">
+          <Label htmlFor="template">Szablon</Label>
           <select
             id="template"
             {...register('template')}
@@ -106,46 +115,45 @@ export function OrderForm({ defaultPlan = 'starter', defaultTemplate = 'business
         </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="businessName">Bedrijfsnaam</Label>
+      <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
+        <Label htmlFor="businessName">Nazwa firmy</Label>
         <Input id="businessName" placeholder="Jansen Consulting" {...register('businessName')} />
         {errors.businessName && (
           <p className="text-xs text-red-500">{errors.businessName.message}</p>
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="fullName">Volledige naam</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
+          <Label htmlFor="fullName">Pełne imię i nazwisko</Label>
           <Input id="fullName" placeholder="Jan Jansen" {...register('fullName')} />
           {errors.fullName && <p className="text-xs text-red-500">{errors.fullName.message}</p>}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">E-mailadres</Label>
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+          <Label htmlFor="email">Adres e-mail</Label>
           <Input id="email" type="email" placeholder="jan@jansen.nl" {...register('email')} />
           {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="phone">Telefoonnummer</Label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-250">
+          <Label htmlFor="phone">Numer telefonu</Label>
           <Input id="phone" type="tel" placeholder="+31 6 12 34 56 78" {...register('phone')} />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone.message}</p>}
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="domain">Domeinnaam</Label>
+        <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+          <Label htmlFor="domain">Nazwa domeny</Label>
           <Input id="domain" placeholder="janjansen.nl" {...register('domain')} />
           {errors.domain && <p className="text-xs text-red-500">{errors.domain.message}</p>}
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
         <Label htmlFor="description">
-          Omschrijving van je bedrijf{' '}
-          <span className="text-gray-400 font-normal">(optioneel)</span>
+          Opis firmy <span className="text-gray-400 font-normal">(opcjonalnie)</span>
         </Label>
         <Textarea
           id="description"
@@ -156,16 +164,21 @@ export function OrderForm({ defaultPlan = 'starter', defaultTemplate = 'business
       </div>
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {error}
         </div>
       )}
 
-      <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-        {isSubmitting ? 'Bestelling verwerken...' : 'Bestellen & betalen'}
+      <Button
+        type="submit"
+        className="w-full md:w-auto md:min-w-[240px] md:self-center md:px-10 transition-all hover:scale-[1.01] hover:shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300"
+        size="lg"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Przetwarzanie zamówienia...' : 'Zamów i zapłać'}
       </Button>
 
-      <p className="text-center text-xs text-gray-500">
+      <p className="text-center text-xs text-gray-500 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
         Veilig betalen via iDEAL, Bancontact of creditcard. Powered by Mollie.
       </p>
     </form>
