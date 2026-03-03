@@ -60,8 +60,8 @@ const templates: Array<{
 export default function TemplatesPage() {
   return (
     <section className="py-24 md:py-32">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center mb-16 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
             Wybierz premium szablon dla swojej działalności ZZP
           </h1>
@@ -69,7 +69,7 @@ export default function TemplatesPage() {
             Trzy najczęstsze i najbardziej dochodowe branże ZZP w Holandii, gotowe do szybkiej sprzedaży online.
           </p>
         </div>
-        <article className="group mb-12 max-w-6xl mx-auto overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl animate-in fade-in slide-in-from-bottom-4">
+        <article className="group mb-20 max-w-6xl mx-auto overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl animate-in fade-in slide-in-from-bottom-4">
           <div className="grid gap-8 p-6 md:grid-cols-2 md:items-center md:p-10">
             <div className="order-2 md:order-1">
               <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 mb-3">Meest gekozen ZZP-categorie in Nederland</p>
@@ -106,7 +106,7 @@ export default function TemplatesPage() {
             </div>
           </div>
         </article>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {templates.map((template) => (
             <TemplateCard key={template.id} {...template} />
           ))}
