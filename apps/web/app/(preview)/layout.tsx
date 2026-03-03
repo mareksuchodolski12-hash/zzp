@@ -7,10 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="nl" suppressHydrationWarning>
-      <head />
-      <body className="m-0 p-0">{children}</body>
-    </html>
-  );
+  return <div className="m-0 p-0">{children}</div>;
 }
