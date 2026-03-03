@@ -91,12 +91,14 @@ Copy `apps/web/.env.example` to `apps/web/.env.local` and fill in:
 
 | Variable | Description |
 |---|---|
-| `DATABASE_URL` | Neon PostgreSQL connection string |
+| `DATABASE_URL` | Neon PostgreSQL connection string (fallback) |
+| `SUPABASE_DATABASE_URL` | Supabase PostgreSQL connection string (primary) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID |
 | `MOLLIE_API_KEY` | Mollie API key (use `test_` prefix for testing) |
 | `VERCEL_TOKEN` | Vercel API token |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API token |
-| `INTERNAL_API_SECRET` | Long random secret for internal API auth |
+| `INTERNAL_API_SECRET` | Long random secret for internal API auth (fallback) |
+| `MODERATOR_TOKEN` | Primary token for moderator/internal deployment endpoints |
 
 ### Database Setup
 

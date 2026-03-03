@@ -3,11 +3,13 @@
   "globalEnv": [
     "NODE_ENV",
     "DATABASE_URL",
+    "SUPABASE_DATABASE_URL",
     "SANITY_PROJECT_ID",
     "NEXT_PUBLIC_SANITY_PROJECT_ID",
     "MOLLIE_API_KEY",
     "VERCEL_TOKEN",
-    "CLOUDFLARE_API_TOKEN"
+    "CLOUDFLARE_API_TOKEN",
+    "MODERATOR_TOKEN"
   ],
   "tasks": {
     "build": {

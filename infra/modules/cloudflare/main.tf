@@ -12,6 +12,10 @@ variable "cloudflare_api_token" {
   description = "Cloudflare API token"
   type        = string
   sensitive   = true
+  validation {
+    condition     = can(regex("^[A-Za-z0-9_-]{30,80}$", trimspace(var.cloudflare_api_token)))
+    error_message = "cloudflare_api_token must contain 30-80 letters, numbers, hyphens or underscores."
+  }
 }
 
 variable "zone_id" {

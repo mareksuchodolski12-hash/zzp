@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { cn, formatEuro, slugify } from '../lib/utils';
+import { cn, formatEuro, resolveDatabaseUrl, resolveModeratorToken, slugify } from '../lib/utils';
 
 describe('cn', () => {
   it('merges class names', () => {
@@ -33,5 +33,51 @@ describe('slugify', () => {
 
   it('collapses multiple dashes', () => {
     expect(slugify('hello  world')).toBe('hello-world');
+  });
+});
+
+describe('resolveModeratorToken', () => {
+  it('prefers MODERATOR_TOKEN', () => {
+    process.env.MODERATOR_TOKEN = 'moderator-token';
+    process.env.INTERNAL_API_SECRET = 'internal-token';
+    expect(resolveModeratorToken()).toBe('moderator-token');
+    delete process.env.MODERATOR_TOKEN;
+    delete process.env.INTERNAL_API_SECRET;
+  });
+
+  it('falls back to INTERNAL_API_SECRET', () => {
+    delete process.env.MODERATOR_TOKEN;
+    process.env.INTERNAL_API_SECRET = 'internal-token';
+    expect(resolveModeratorToken()).toBe('internal-token');
+    delete process.env.INTERNAL_API_SECRET;
+  });
+
+  it('throws when both tokens are missing', () => {
+    delete process.env.MODERATOR_TOKEN;
+    delete process.env.INTERNAL_API_SECRET;
+    expect(() => resolveModeratorToken()).toThrow('Missing MODERATOR_TOKEN or INTERNAL_API_SECRET');
+  });
+});
+
+describe('resolveDatabaseUrl', () => {
+  it('prefers SUPABASE_DATABASE_URL', () => {
+    process.env.SUPABASE_DATABASE_URL = 'postgresql://supabase';
+    process.env.DATABASE_URL = 'postgresql://neon';
+    expect(resolveDatabaseUrl()).toBe('postgresql://supabase');
+    delete process.env.SUPABASE_DATABASE_URL;
+    delete process.env.DATABASE_URL;
+  });
+
+  it('falls back to DATABASE_URL', () => {
+    delete process.env.SUPABASE_DATABASE_URL;
+    process.env.DATABASE_URL = 'postgresql://neon';
+    expect(resolveDatabaseUrl()).toBe('postgresql://neon');
+    delete process.env.DATABASE_URL;
+  });
+
+  it('throws when both database urls are missing', () => {
+    delete process.env.SUPABASE_DATABASE_URL;
+    delete process.env.DATABASE_URL;
+    expect(() => resolveDatabaseUrl()).toThrow('Missing SUPABASE_DATABASE_URL or DATABASE_URL');
   });
 });

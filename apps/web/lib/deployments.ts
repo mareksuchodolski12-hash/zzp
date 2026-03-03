@@ -1,4 +1,5 @@
 import type { TemplateType } from './orders';
+import { resolveDatabaseUrl } from './utils';
 
 export interface DeploymentInput {
   orderId: string;
@@ -123,7 +124,7 @@ async function deployToVercel(projectId: string, input: DeploymentInput) {
 
 async function persistDeployment(deployment: Deployment): Promise<void> {
   const { neon } = await import('@neondatabase/serverless');
-  const sql = neon(process.env.DATABASE_URL!);
+  const sql = neon(resolveDatabaseUrl());
 
   await sql`
     INSERT INTO deployments (
@@ -139,7 +140,7 @@ async function persistDeployment(deployment: Deployment): Promise<void> {
 
 async function fetchDeploymentFromDb(orderId: string): Promise<Deployment | null> {
   const { neon } = await import('@neondatabase/serverless');
-  const sql = neon(process.env.DATABASE_URL!);
+  const sql = neon(resolveDatabaseUrl());
 
   const rows = await sql`SELECT * FROM deployments WHERE order_id = ${orderId} LIMIT 1`;
 
