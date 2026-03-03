@@ -24,4 +24,22 @@ describe('static routes', () => {
     expect(privacyPage).toContain('Privacybeleid');
     expect(termsPage).toContain('Algemene voorwaarden');
   });
+
+  it('social proof sections include updated stats and examples', () => {
+    const socialProofSection = readFileSync(
+      join(process.cwd(), 'components', 'marketing', 'social-proof-section.tsx'),
+      'utf-8'
+    );
+    const testimonialsSection = readFileSync(
+      join(process.cwd(), 'components', 'marketing', 'testimonials-section.tsx'),
+      'utf-8'
+    );
+
+    expect(socialProofSection).toContain('500+ gelanceerde websites');
+    expect(socialProofSection).toContain('4.9/5 gemiddelde beoordeling');
+    expect(socialProofSection).toContain('48 uur gemiddelde oplevering');
+    expect(testimonialsSection).toContain('LenaSinger.nl');
+    expect(testimonialsSection).toContain('MSHydroPro.nl');
+    expect(testimonialsSection).toContain('SystemPilot.nl');
+  });
 });
