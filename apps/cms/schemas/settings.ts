@@ -4,6 +4,7 @@ export const siteSettingsType = defineType({
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
+  // @ts-expect-error Sanity currently honors this key at runtime for document action restrictions, but its TS types omit it.
   __experimental_actions: ['update', 'publish'],
   fields: [
     defineField({
@@ -90,4 +91,4 @@ export const siteSettingsType = defineType({
       media: 'logo',
     },
   },
-} as any);
+});
