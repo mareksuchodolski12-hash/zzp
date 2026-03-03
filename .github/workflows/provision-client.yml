@@ -1,0 +1,123 @@
+name: Provision Client
+
+on:
+  repository_dispatch:
+    types: [payment-received]
+  workflow_dispatch:
+    inputs:
+      orderId:
+        description: 'Order ID'
+        required: true
+      clientSlug:
+        description: 'Client slug (e.g. jansen-consulting)'
+        required: true
+      businessName:
+        description: 'Business name'
+        required: true
+      template:
+        description: 'Template (business/freelancer/portfolio)'
+        required: true
+        default: 'business'
+      domain:
+        description: 'Domain name (e.g. jansenconsulting.nl)'
+        required: true
+      email:
+        description: 'Client contact email'
+        required: true
+      phone:
+        description: 'Client contact phone'
+        required: false
+
+concurrency:
+  group: provision-${{ github.event.client_payload.orderId || github.event.inputs.orderId }}
+  cancel-in-progress: false
+
+jobs:
+  provision:
+    name: Provision Client Website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set variables
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "ORDER_ID=${{ github.event.client_payload.orderId }}" >> $GITHUB_ENV
+            echo "CLIENT_SLUG=${{ github.event.client_payload.clientSlug }}" >> $GITHUB_ENV
+            echo "BUSINESS_NAME=${{ github.event.client_payload.businessName }}" >> $GITHUB_ENV
+            echo "TEMPLATE=${{ github.event.client_payload.template }}" >> $GITHUB_ENV
+            echo "DOMAIN=${{ github.event.client_payload.domain }}" >> $GITHUB_ENV
+            echo "EMAIL=${{ github.event.client_payload.email }}" >> $GITHUB_ENV
+            echo "PHONE=${{ github.event.client_payload.phone }}" >> $GITHUB_ENV
+          else
+            echo "ORDER_ID=${{ github.event.inputs.orderId }}" >> $GITHUB_ENV
+            echo "CLIENT_SLUG=${{ github.event.inputs.clientSlug }}" >> $GITHUB_ENV
+            echo "BUSINESS_NAME=${{ github.event.inputs.businessName }}" >> $GITHUB_ENV
+            echo "TEMPLATE=${{ github.event.inputs.template }}" >> $GITHUB_ENV
+            echo "DOMAIN=${{ github.event.inputs.domain }}" >> $GITHUB_ENV
+            echo "EMAIL=${{ github.event.inputs.email }}" >> $GITHUB_ENV
+            echo "PHONE=${{ github.event.inputs.phone }}" >> $GITHUB_ENV
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create Vercel Project
+        id: vercel
+        run: |
+          PROJECT_RESPONSE=$(curl -sf -X POST "https://api.vercel.com/v9/projects" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"name\": \"zzp-client-${CLIENT_SLUG}\",
+              \"framework\": \"nextjs\",
+              \"environmentVariables\": [
+                {\"key\": \"NEXT_PUBLIC_BUSINESS_NAME\", \"value\": \"${BUSINESS_NAME}\", \"target\": [\"production\"]},
+                {\"key\": \"NEXT_PUBLIC_CONTACT_EMAIL\", \"value\": \"${EMAIL}\", \"target\": [\"production\"]},
+                {\"key\": \"NEXT_PUBLIC_CONTACT_PHONE\", \"value\": \"${PHONE}\", \"target\": [\"production\"]}
+              ]
+            }")
+          PROJECT_ID=$(echo $PROJECT_RESPONSE | jq -r '.id')
+          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
+          echo "Created Vercel project: $PROJECT_ID"
+
+      - name: Initialize Sanity CMS
+        run: |
+          cd apps/cms
+          SANITY_AUTH_TOKEN=${{ secrets.SANITY_AUTH_TOKEN }} \
+          SANITY_ORGANIZATION_ID=${{ secrets.SANITY_ORGANIZATION_ID }} \
+          node scripts/init-client-cms.mjs "${CLIENT_SLUG}" "${BUSINESS_NAME}"
+
+      - name: Register DNS via Cloudflare
+        run: |
+          node scripts/register-dns.mjs \
+            --domain "${DOMAIN}" \
+            --zone-id "${{ secrets.CLOUDFLARE_ZONE_ID }}" \
+            --api-token "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+
+      - name: Deploy Template to Vercel
+        run: |
+          npm install -g vercel
+          vercel deploy templates/${TEMPLATE} \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --name "zzp-client-${CLIENT_SLUG}" \
+            --prod
+
+      - name: Update order status
+        run: |
+          curl -sf -X PATCH "${{ secrets.APP_URL }}/api/orders?id=${ORDER_ID}" \
+            -H "Authorization: Bearer ${{ secrets.INTERNAL_API_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"status": "deployed"}'
+
+      - name: Notify client
+        run: |
+          echo "Client ${BUSINESS_NAME} provisioned successfully!"
+          echo "Domain: ${DOMAIN}"
+          echo "Vercel Project: ${PROJECT_ID}"

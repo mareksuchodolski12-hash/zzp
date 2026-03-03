@@ -1,0 +1,1 @@
+export { FreelancerSkills } from './index';

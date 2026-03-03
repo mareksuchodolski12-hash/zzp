@@ -1,0 +1,89 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: staging
+      url: https://staging.zzp-platform.nl
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NEXT_PUBLIC_APP_URL: https://staging.zzp-platform.nl
+
+      - name: Deploy to Vercel (Staging)
+        run: |
+          npm install -g vercel
+          vercel deploy --prebuilt --token ${{ secrets.VERCEL_TOKEN }} \
+            --env NEXT_PUBLIC_APP_URL=https://staging.zzp-platform.nl \
+            > deployment-url.txt
+          echo "DEPLOYMENT_URL=$(cat deployment-url.txt)" >> $GITHUB_ENV
+
+      - name: Alias to staging
+        run: |
+          vercel alias set $DEPLOYMENT_URL staging.zzp-platform.nl \
+            --token ${{ secrets.VERCEL_TOKEN }}
+
+  deploy-prod:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment:
+      name: production
+      url: https://zzp-platform.nl
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: production
+          NEXT_PUBLIC_APP_URL: https://zzp-platform.nl
+
+      - name: Deploy to Vercel (Production)
+        run: |
+          npm install -g vercel
+          vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }} \
+            --env NEXT_PUBLIC_APP_URL=https://zzp-platform.nl
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true

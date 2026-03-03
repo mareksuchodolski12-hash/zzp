@@ -1,0 +1,1 @@
+export { PortfolioAbout } from './index';

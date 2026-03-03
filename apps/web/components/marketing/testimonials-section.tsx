@@ -1,0 +1,68 @@
+const testimonials = [
+  {
+    name: 'Sophie van der Berg',
+    role: 'Zelfstandig coach',
+    content:
+      'Mijn website staat er perfect uit. Binnen een dag was alles geregeld en ik kon meteen klanten doorverwijzen naar mijn nieuwe site. Heel fijn!',
+    avatar: 'SB',
+    rating: 5,
+  },
+  {
+    name: 'Mark Jansen',
+    role: 'Freelance developer',
+    content:
+      'Als developer weet ik hoe lastig het kan zijn om je eigen website professioneel te krijgen. Deze service nam alle technische rompslomp weg. Aanrader.',
+    avatar: 'MJ',
+    rating: 5,
+  },
+  {
+    name: 'Fatima El Amrani',
+    role: 'ZZP boekhouder',
+    content:
+      'Eindelijk een website die er echt professioneel uitziet. Mijn klanten reageren positief en ik krijg er meer leads door. De prijs is ook heel eerlijk.',
+    avatar: 'FE',
+    rating: 5,
+  },
+];
+
+export function TestimonialsSection() {
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Wat andere ZZP&apos;ers zeggen</h2>
+          <p className="text-xl text-gray-600">
+            Honderden tevreden ZZP-professionals gingen je voor.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.name}
+              className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
+            >
+              <div className="flex mb-4">
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-lg">
+                    ★
+                  </span>
+                ))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-6">&ldquo;{testimonial.content}&rdquo;</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-semibold text-sm">
+                  {testimonial.avatar}
+                </div>
+                <div>
+                  <p className="font-semibold text-sm text-gray-900">{testimonial.name}</p>
+                  <p className="text-xs text-gray-500">{testimonial.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,1 @@
+export { FreelancerHero } from './index';
