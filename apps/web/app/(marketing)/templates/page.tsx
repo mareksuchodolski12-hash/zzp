@@ -12,6 +12,8 @@ const templates: Array<{
   name: string;
   description: string;
   tags: string[];
+  previewLabel?: string;
+  selectLabel?: string;
   previewUrl: string;
   thumbnailUrl: string;
   color: 'blue' | 'purple' | 'green';
@@ -30,10 +32,12 @@ const templates: Array<{
   {
     id: 'freelancer',
     previewSlug: 'instalator',
-    name: 'Instalator techniczny',
+    name: 'Technische Installateur',
     description:
-      'Idealny dla elektryków, hydraulików, instalatorów CV i montażystów paneli solarnych nastawionych na leady i zaufanie.',
-    tags: ['Elektryk', 'Hydraulik', 'Instalator CV'],
+      'SEO-template voor elektricien zzp, loodgieter zzp, cv-monteur, zonnepanelen installateur en warmtepomp installateur binnen een installatiebedrijf zzp in Nederland.',
+    tags: ['Elektricien', 'Loodgieter', 'CV-monteur', 'Zonnepanelen'],
+    previewLabel: 'Voorbeeld bekijken',
+    selectLabel: 'Kies dit template',
     previewUrl: '/preview/instalator',
     thumbnailUrl: '/images/template-freelancer.jpg',
     color: 'purple',
