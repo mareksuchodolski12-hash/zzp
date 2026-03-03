@@ -5,24 +5,19 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'Hoe werkt 24 uur levering?',
+    question: 'Hoe werkt levering binnen 48 uur?',
     answer:
-      'Zodra je je bestelling plaatst en betaalt, gaan we direct aan het werk. Wij zetten je website samen met de template en jouw gegevens. Binnen 24 uur is je website live en online.',
+      'Zodra je je bestelling plaatst en betaalt, gaan we direct aan het werk. Wij zetten je website samen met de template en jouw gegevens. Binnen 48 uur is je website live en online.',
   },
   {
-    question: 'Kan ik later wijzigingen doorgeven?',
+    question: 'Kan ik later wijzigingen laten uitvoeren?',
     answer:
-      'Ja, natuurlijk! Na lancering kun je je websites zelf aanpassen via het CMS (Content Management System). Heb je hulp nodig? We helpen je graag.',
+      'Ja, zeker. Na oplevering kun je wijzigingen altijd doorgeven en ons technisch team voert deze professioneel voor je door.',
   },
   {
     question: 'Is hosting inbegrepen?',
     answer:
-      'Ja, hosting is volledig inbegrepen in de prijs. Je betaalt eenmalig €499 en je website draait op veilige, snelle servers. Geen extra kosten.',
-  },
-  {
-    question: 'Hoe werkt betaling?',
-    answer:
-      'We accepteren alle gangbare betaalmethoden: creditcard, iDEAL, PayPal en bankoverschrijving. Je betaling is beveiligd en je ontvangt direct een bevestiging.',
+      'Ja, hosting is volledig inbegrepen in de prijs. Je profiteert nu van €400 als tijdelijk aanbod (normale prijs €499). Geen verborgen kosten.',
   },
 ];
 

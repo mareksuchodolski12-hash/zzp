@@ -10,39 +10,39 @@ import {
 const features = [
   {
     icon: Zap,
-    title: 'Live binnen 24 uur',
+    title: 'Live binnen 48 uur',
     description:
-      'Wij zorgen dat jouw website binnen één werkdag live staat. Jij hoeft niets te doen.',
+      'Jouw website staat binnen 48 uur live via een strak deploymentproces en een gecontroleerde go-live.',
   },
   {
     icon: Palette,
     title: 'Professioneel ontwerp',
     description:
-      'Moderne templates die zijn ontworpen voor jouw vakgebied. Altijd up-to-date met de nieuwste trends.',
+      'Een premium ontwerp, afgestemd op jouw vakgebied, met een heldere structuur en sterke conversiefocus.',
   },
   {
     icon: Smartphone,
     title: 'Mobiel geoptimaliseerd',
     description:
-      'Jouw website ziet er op elk apparaat perfect uit. Smartphone, tablet of desktop.',
+      'Volledig responsive op smartphone, tablet en desktop, met consistente prestaties op elk schermformaat.',
   },
   {
     icon: Search,
     title: 'SEO-vriendelijk',
     description:
-      'Basisoptimalisaties voor zoekmachines inbegrepen. Zodat klanten jou kunnen vinden.',
+      'Technische SEO-basis is standaard ingericht, zodat zoekmachines je website direct correct kunnen indexeren.',
   },
   {
     icon: Shield,
     title: 'Veilig & snel',
     description:
-      'SSL certificaat, snelle laadtijden en betrouwbare hosting zijn standaard inbegrepen.',
+      'SSL, performance-optimalisatie en betrouwbare managed hosting zijn standaard onderdeel van de oplevering.',
   },
   {
     icon: Edit,
-    title: 'Eenvoudig aanpasbaar',
+    title: 'Doorlopend beheerd',
     description:
-      'Teksten en afbeeldingen kun je zelf aanpassen via een gebruiksvriendelijk CMS.',
+      'Updates aan teksten en afbeeldingen worden uitgevoerd door ons technisch team, zonder dat jij een CMS nodig hebt.',
   },
 ];
 
@@ -53,7 +53,7 @@ export function FeaturesSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Alles wat je nodig hebt</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Wij nemen alle technische zorgen van je over, zodat jij je kunt focussen op je werk.
+            Wij nemen de volledige technische uitvoering uit handen, zodat jij je kunt focussen op groei en klanten.
           </p>
         </div>
 

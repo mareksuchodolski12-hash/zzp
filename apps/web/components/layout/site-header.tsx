@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { BrandLogo } from '@/components/layout/brand-logo';
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,26 +12,21 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">ZZP</span>
-          <span className="text-xl font-semibold text-gray-700">Website</span>
+        <Link href="/" className="flex items-center">
+          <BrandLogo />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="/templates" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-            Templates
-          </Link>
-          <Link href="/pricing" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-            Prijzen
-          </Link>
+        <nav className="hidden lg:flex items-center gap-6">
           <Link href="/order">
             <Button size="sm">Bestel nu</Button>
           </Link>
         </nav>
 
         <button
-          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          className="lg:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-tablet-menu"
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -38,21 +34,21 @@ export function SiteHeader() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden border-t bg-white animate-in fade-in slide-in-from-top-2 duration-200">
-          <nav className="container flex flex-col gap-4 py-4">
+        <div id="mobile-tablet-menu" className="lg:hidden border-t bg-white animate-in fade-in slide-in-from-top-2 duration-200">
+          <nav className="container flex flex-col gap-3 py-4">
             <Link
-              href="/templates"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
+              href="/"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors px-1 py-2"
               onClick={() => setIsOpen(false)}
             >
-              Templates
+              Home
             </Link>
             <Link
-              href="/pricing"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
+              href="/#sociale-bewijzen"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors px-1 py-2"
               onClick={() => setIsOpen(false)}
             >
-              Prijzen
+              Voorbeelden
             </Link>
             <Link href="/order" onClick={() => setIsOpen(false)}>
               <Button size="sm" className="w-full">

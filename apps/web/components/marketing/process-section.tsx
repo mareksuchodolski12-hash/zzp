@@ -16,8 +16,8 @@ const steps = [
   {
     icon: CheckCircle,
     number: 3,
-    title: 'Website live binnen 24 uur',
-    description: 'Wij zetten alles live. Jouw website is meteen online en klaar voor klanten.',
+    title: 'Website live binnen 48 uur',
+    description: 'Wij zetten alles live. Jouw website is binnen 48 uur online en klaar voor klanten.',
   },
 ];
 

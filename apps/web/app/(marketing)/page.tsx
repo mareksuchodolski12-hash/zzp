@@ -1,5 +1,4 @@
 import { HeroSection } from '@/components/marketing/hero-section';
-import { SocialProofSection } from '@/components/marketing/social-proof-section';
 import { ProcessSection } from '@/components/marketing/process-section';
 import { FeaturesSection } from '@/components/marketing/features-section';
 import { SimplePricingSection } from '@/components/marketing/simple-pricing-section';
@@ -9,19 +8,18 @@ import { CtaSection } from '@/components/marketing/cta-section';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'ZZP Website Platform | Ready-Made Websites for Self-Employed Professionals',
+  title: 'ZZP Website Platform | Professionele ZZP-websites zonder gedoe',
   description:
-    'Launch your professional website in 24 hours. Beautiful templates for ZZP professionals. No coding needed.',
+    'Professionele ZZP-website binnen 48 uur. Eén prijs, geen contracten en geen verborgen kosten.',
 };
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <SocialProofSection />
+      <SimplePricingSection />
       <ProcessSection />
       <FeaturesSection />
-      <SimplePricingSection />
       <FaqSection />
       <TestimonialsSection />
       <CtaSection />

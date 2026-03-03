@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BrandLogo } from '@/components/layout/brand-logo';
 
 export function SiteFooter() {
   return (
@@ -6,9 +7,8 @@ export function SiteFooter() {
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-xl font-bold text-white">ZZP</span>
-              <span className="text-xl font-semibold text-gray-400">Website</span>
+            <div className="mb-4">
+              <BrandLogo inverted />
             </div>
             <p className="text-sm text-gray-400 max-w-xs">
               Professionele websites voor ZZP&apos;ers. Snel live, geen gedoe, eerlijke prijs.
@@ -20,16 +20,6 @@ export function SiteFooter() {
               Platform
             </h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/templates" className="text-sm hover:text-white transition-colors">
-                  Templates
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="text-sm hover:text-white transition-colors">
-                  Prijzen
-                </Link>
-              </li>
               <li>
                 <Link href="/order" className="text-sm hover:text-white transition-colors">
                   Bestellen
@@ -45,18 +35,10 @@ export function SiteFooter() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:info@zzp-website.nl"
+                  href="tel:+31625320367"
                   className="text-sm hover:text-white transition-colors"
                 >
-                  info@zzp-website.nl
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+31612345678"
-                  className="text-sm hover:text-white transition-colors"
-                >
-                  +31 6 12 34 56 78
+                  +31 6 25 32 03 67
                 </a>
               </li>
             </ul>
