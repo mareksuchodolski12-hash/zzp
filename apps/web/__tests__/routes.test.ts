@@ -13,6 +13,13 @@ describe('static routes', () => {
     expect(previewLayout).not.toContain('<body');
   });
 
+  it('preview route guards against missing slug params', () => {
+    const previewPage = readFileSync(join(appDir, '(preview)', 'preview', '[slug]', 'page.tsx'), 'utf-8');
+
+    expect(previewPage).toContain('if (!slug)');
+    expect(previewPage).toContain('notFound()');
+  });
+
   it('includes privacy and terms routes referenced in footer', () => {
     expect(existsSync(join(appDir, '(marketing)', 'privacy', 'page.tsx'))).toBe(true);
     expect(existsSync(join(appDir, '(marketing)', 'terms', 'page.tsx'))).toBe(true);

@@ -27,7 +27,12 @@ interface PreviewPageProps {
 export default async function PreviewPage({
   params,
 }: PreviewPageProps) {
-  const { slug } = await params;
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug;
+
+  if (!slug) {
+    notFound();
+  }
 
   const Template = templateMap[slug];
 
