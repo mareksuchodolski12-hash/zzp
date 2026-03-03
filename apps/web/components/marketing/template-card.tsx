@@ -62,9 +62,9 @@ export function TemplateCard({
         </div>
 
         <div className="flex gap-3">
-          <Link href={previewUrl} className="flex-1">
+          <Link href={`/preview/${id}`} className="flex-1">
             <Button className="w-full text-sm group/preview transition-all hover:scale-105 hover:shadow-lg" size="sm">
-              Preview
+              Zapowiedź
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/preview:translate-x-1" />
             </Button>
           </Link>
