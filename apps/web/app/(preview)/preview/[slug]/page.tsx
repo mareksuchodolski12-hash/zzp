@@ -4,6 +4,9 @@ import { PortfolioTemplate } from '@/components/templates/portfolio';
 import { notFound } from 'next/navigation';
 
 const templateMap: Record<string, React.ComponentType> = {
+  budowlanka: BusinessTemplate,
+  instalator: FreelancerTemplate,
+  ogrodnik: PortfolioTemplate,
   biznes: BusinessTemplate,
   freelancer: FreelancerTemplate,
   portfolio: PortfolioTemplate,
