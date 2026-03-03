@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function CtaSection() {
@@ -11,17 +12,19 @@ export function CtaSection() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/order">
-            <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50 text-base px-8">
+            <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50 text-base px-8 group transition-all hover:scale-105 hover:shadow-lg">
               Begin nu
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
           <Link href="/templates">
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 text-base px-8"
+              className="border-white text-white hover:bg-white/10 text-base px-8 group transition-all hover:scale-105 hover:shadow-lg"
             >
               Bekijk templates
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </div>

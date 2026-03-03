@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/marketing/hero-section';
+import { SocialProofSection } from '@/components/marketing/social-proof-section';
 import { FeaturesSection } from '@/components/marketing/features-section';
 import { TestimonialsSection } from '@/components/marketing/testimonials-section';
 import { CtaSection } from '@/components/marketing/cta-section';
@@ -14,6 +15,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <SocialProofSection />
       <FeaturesSection />
       <TestimonialsSection />
       <CtaSection />

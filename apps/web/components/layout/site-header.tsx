@@ -1,7 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function SiteHeader() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -22,24 +28,40 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <button className="md:hidden p-2 text-gray-600" aria-label="Open menu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
+        <button
+          className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
+      {isOpen && (
+        <div className="md:hidden border-t bg-white animate-in fade-in slide-in-from-top-2 duration-200">
+          <nav className="container flex flex-col gap-4 py-4">
+            <Link
+              href="/templates"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Templates
+            </Link>
+            <Link
+              href="/pricing"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Prijzen
+            </Link>
+            <Link href="/order" onClick={() => setIsOpen(false)}>
+              <Button size="sm" className="w-full">
+                Bestel nu
+              </Button>
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
