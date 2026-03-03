@@ -85,6 +85,15 @@ cp .env.example .env.local
 npm run dev
 ```
 
+For CMS Studio:
+
+```bash
+cd apps/cms
+cp .env.example .env.local
+# Fill in SANITY_STUDIO_PROJECT_ID and dataset
+npm run dev
+```
+
 ### Environment Variables
 
 Copy `apps/web/.env.example` to `apps/web/.env.local` and fill in:
@@ -93,7 +102,10 @@ Copy `apps/web/.env.example` to `apps/web/.env.local` and fill in:
 |---|---|
 | `DATABASE_URL` | Neon PostgreSQL connection string (fallback) |
 | `SUPABASE_DATABASE_URL` | Supabase PostgreSQL connection string (primary) |
+| `SANITY_STUDIO_PROJECT_ID` | Sanity Studio project ID (CMS app) |
+| `SANITY_STUDIO_DATASET` | Sanity Studio dataset (usually `production`) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Sanity project ID |
+| `NEXT_PUBLIC_SANITY_DATASET` | Sanity dataset (frontend) |
 | `MOLLIE_API_KEY` | Mollie API key (use `test_` prefix for testing) |
 | `VERCEL_TOKEN` | Vercel API token |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API token |
