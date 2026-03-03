@@ -6,6 +6,7 @@ import { SimplePricingSection } from '@/components/marketing/simple-pricing-sect
 import { FaqSection } from '@/components/marketing/faq-section';
 import { TestimonialsSection } from '@/components/marketing/testimonials-section';
 import { CtaSection } from '@/components/marketing/cta-section';
+import { SanityDemo } from '@/components/sanity-demo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -25,6 +26,9 @@ export default function HomePage() {
       <FaqSection />
       <TestimonialsSection />
       <CtaSection />
+      <div className="container mx-auto px-4 py-12">
+        <SanityDemo />
+      </div>
     </>
   );
 }
