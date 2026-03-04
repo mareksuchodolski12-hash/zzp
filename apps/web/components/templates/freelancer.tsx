@@ -27,6 +27,14 @@ export function FreelancerTemplate() {
             <a href="#contact" className="bg-purple-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">Start project</a>
           </div>
         </div>
+        <div className="md:hidden border-t border-white/10 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 text-sm">
+            <a href="#werk" className="text-gray-300 hover:text-white transition-colors">Cases</a>
+            <a href="#services" className="text-gray-300 hover:text-white transition-colors">Services</a>
+            <a href="#process" className="text-gray-300 hover:text-white transition-colors">Proces</a>
+            <a href="#contact" className="text-purple-300 font-semibold hover:text-purple-200 transition-colors">Start</a>
+          </div>
+        </div>
       </nav>
 
       <section className="min-h-screen bg-[#0b0b12] text-white flex items-center">

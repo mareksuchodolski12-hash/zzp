@@ -10,7 +10,6 @@ infra/
 │   ├── vercel/         # Vercel project provisioning
 │   ├── cloudflare/     # DNS records + SSL settings
 │   ├── neon/           # PostgreSQL database (Neon)
-│   ├── sanity/         # Sanity CMS project
 │   ├── grafana/        # Grafana Cloud monitoring stack
 │   └── sops/           # SOPS configuration generation
 └── envs/
@@ -59,15 +58,6 @@ Provisions a Neon PostgreSQL project via the Neon REST API using Terraform's `lo
 - `project_name`
 - `region` (default: `aws-eu-west-1`)
 - `database_name` (default: `zzp`)
-
-### sanity
-
-Creates a new Sanity CMS project via the Sanity Management API.
-
-**Inputs:**
-- `sanity_auth_token`
-- `project_name`
-- `organization_id` (optional)
 
 ### grafana
 
@@ -147,8 +137,7 @@ sops -d apps/web/.env.production.enc
 Each client website is provisioned dynamically (not via Terraform) through the `provision-client.yml` GitHub Actions workflow. The provisioning:
 
 1. Creates a Vercel project via API
-2. Creates a Sanity project via API
-3. Creates DNS records via Cloudflare API
-4. Deploys the template
+2. Creates DNS records via Cloudflare API
+3. Deploys the template
 
 See [ci-cd.md](ci-cd.md) for the full provisioning flow.

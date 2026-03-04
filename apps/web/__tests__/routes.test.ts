@@ -36,29 +36,20 @@ describe('static routes', () => {
   it('simple pricing section includes garantie and beschikbaarheid messaging', () => {
     const pricingSection = readFileSync(join(marketingComponentsDir, 'simple-pricing-section.tsx'), 'utf-8');
 
+    expect(pricingSection).toContain('Één vaste prijs: €{FIXED_PRICE}');
+    expect(pricingSection).toContain('Geen contracten, geen verborgen kosten en geen onverwachte toeslagen.');
     expect(pricingSection).toContain('Garantie');
-    expect(pricingSection).toContain('Niet tevreden? 100% geld terug binnen 48 uur — zonder vragen.');
-    expect(pricingSection).toContain('Beschikbaarheid');
-    expect(pricingSection).toContain('We nemen maximaal 5 projecten per dag aan om kwaliteit te garanderen.');
-    expect(pricingSection).toContain('Tijdelijk aanbod: €400 promotieprijs — normaal €499.');
-    expect(pricingSection).toContain('Alleen voor de eerste 50 klanten.');
-    expect(pricingSection).toContain('Nog maar {availableSpots} van de {PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.');
-    expect(pricingSection).toContain('Controleer beschikbaarheid');
+    expect(pricingSection).toContain('Niet tevreden in de eerste 48 uur na oplevering? Dan krijg je je geld terug.');
+    expect(pricingSection).toContain('Volledige uitvoering door ons team.');
+    expect(pricingSection).toContain('Plan jouw website nu');
   });
 
-  it('social proof sections include updated stats and examples', () => {
-    const socialProofSection = readFileSync(
-      join(process.cwd(), 'components', 'marketing', 'social-proof-section.tsx'),
-      'utf-8'
-    );
+  it('testimonials section includes updated examples', () => {
     const testimonialsSection = readFileSync(
       join(process.cwd(), 'components', 'marketing', 'testimonials-section.tsx'),
       'utf-8'
     );
 
-    expect(socialProofSection).toContain('Sociale bewijzen');
-    expect(socialProofSection).toContain('4.9/5 gemiddelde beoordeling');
-    expect(socialProofSection).toContain('gemiddelde oplevering');
     expect(testimonialsSection).toContain('LenaSinger.nl');
     expect(testimonialsSection).toContain('MSHydroPro.nl');
     expect(testimonialsSection).toContain('SystemPilot.nl');

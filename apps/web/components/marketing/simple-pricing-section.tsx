@@ -1,16 +1,13 @@
-'use client';
-
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const features = [
-  'Managed hosting met 99,95% SLA',
-  'Foto\'s geoptimaliseerd via wereldwijde CDN',
-  'Copywriting met technische SEO-structuur',
-  'UX/UI geoptimaliseerd voor conversie en accessibility',
-  'Geen verborgen kosten: backup, monitoring en security inbegrepen',
+  'Professioneel design op maat van jouw branche',
+  'Technische setup, hosting en beveiliging inbegrepen',
+  'Copy en structuur gericht op aanvragen en conversie',
+  'Mobiel geoptimaliseerd en SEO-klaar op oplevering',
+  'Nazorg en aanpassingen door ons team op verzoek',
 ];
 const examples = [
   {
@@ -21,7 +18,7 @@ const examples = [
     tone: 'from-pink-100 via-purple-100 to-white',
     accent: 'bg-pink-500/80',
     summary:
-      'Professionele branding, foto’s, teksten en een moderne uitstraling die klanten aantrekt.',
+      'Sterke uitstraling, duidelijke positionering en een website die vertrouwen uitstraalt.',
     deliverables: 'Branding, contentstructuur, SEO-basis en conversiegerichte secties opgeleverd.',
   },
   {
@@ -32,7 +29,7 @@ const examples = [
     tone: 'from-sky-100 via-cyan-100 to-white',
     accent: 'bg-sky-600/80',
     summary:
-      'Technische diensten helder uitgelegd, sterke call-to-actions en een betrouwbare uitstraling.',
+      'Diensten helder gepresenteerd met duidelijke call-to-actions voor nieuwe aanvragen.',
     deliverables: 'Dienstenpagina, intake-flow, lokale SEO en duidelijke lead-opvolging ingericht.',
   },
   {
@@ -43,111 +40,35 @@ const examples = [
     tone: 'from-indigo-100 via-blue-100 to-white',
     accent: 'bg-indigo-600/80',
     summary:
-      'Strakke zakelijke website met duidelijke diensten en conversiegerichte structuur.',
+      'Zakelijke opzet met duidelijke propositie en een strakke, professionele layout.',
     deliverables: 'Servicecatalogus, trust-secties, performance-optimalisatie en analytics live gezet.',
   },
 ];
-const PROMOTION_SPOTS_TOTAL = 50;
-const MIN_PROMOTION_SPOTS_AVAILABLE = 1;
-const PROMOTION_SPOT_DROP_INTERVAL_MS = 1000 * 60 * 60 * 3;
-const PROMOTION_SPOT_CHECK_INTERVAL_MS = 1000 * 60 * 60;
-const PROMO_PRICE = 400;
-const NORMAL_PRICE = 499;
-const INSTALLMENT_MONTHS = 12;
-const INSTALLMENT_MONTHLY_PRICE = 45;
-
-type PaymentMode = 'full' | 'installments';
+const FIXED_PRICE = 400;
 
 export function SimplePricingSection() {
-  const [availableSpots, setAvailableSpots] = useState(PROMOTION_SPOTS_TOTAL);
-  const [paymentMode, setPaymentMode] = useState<PaymentMode>('full');
-  const showcaseRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const updateAvailableSpots = () => {
-      const countdownStartTimestamp = Date.UTC(2026, 2, 1);
-      const intervalsPassed = Math.max(0, Math.floor((Date.now() - countdownStartTimestamp) / PROMOTION_SPOT_DROP_INTERVAL_MS));
-      setAvailableSpots(Math.max(MIN_PROMOTION_SPOTS_AVAILABLE, PROMOTION_SPOTS_TOTAL - intervalsPassed));
-    };
-
-    updateAvailableSpots();
-    const interval = setInterval(updateAvailableSpots, PROMOTION_SPOT_CHECK_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const element = showcaseRef.current;
-      if (!element) return;
-
-      const maxScrollLeft = element.scrollWidth - element.clientWidth;
-      if (maxScrollLeft <= 0) return;
-
-      const scrollStep = Math.max(280, Math.floor(element.clientWidth * 0.8));
-      const nextLeft = element.scrollLeft + scrollStep;
-
-      element.scrollTo({
-        left: nextLeft >= maxScrollLeft - 8 ? 0 : nextLeft,
-        behavior: 'smooth',
-      });
-    }, 4200);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">€{PROMO_PRICE} promotieprijs — alleen voor de eerste 50 klanten.</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Één vaste prijs: €{FIXED_PRICE}</h2>
           <p className="text-xl text-blue-700 font-semibold max-w-3xl mx-auto">
-            Normale prijs: €{NORMAL_PRICE}. Bespaar €{NORMAL_PRICE - PROMO_PRICE} zolang het aanbod loopt.
+            Geen contracten, geen verborgen kosten en geen onverwachte toeslagen.
           </p>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-stretch">
           <div className="max-w-lg xl:max-w-none w-full mx-auto xl:mx-0 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-blue-100">
-            <div className="mb-6 rounded-lg border border-blue-100 bg-blue-50 p-1 grid grid-cols-2 gap-1">
-              <button
-                type="button"
-                onClick={() => setPaymentMode('full')}
-                aria-pressed={paymentMode === 'full'}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  paymentMode === 'full' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Normaal
-              </button>
-              <button
-                type="button"
-                onClick={() => setPaymentMode('installments')}
-                aria-pressed={paymentMode === 'installments'}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  paymentMode === 'installments' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Termijnen
-              </button>
-            </div>
-
-            {/* Price */}
             <div className="text-center mb-8">
               <div className="text-5xl font-bold text-gray-900 mb-2">
-                {paymentMode === 'full' ? `€${PROMO_PRICE} promotieprijs` : `€${INSTALLMENT_MONTHLY_PRICE} / maand`}
+                €{FIXED_PRICE}
               </div>
               <div className="text-sm text-gray-500 mt-2">
-                {paymentMode === 'full'
-                  ? `Normale prijs: €${NORMAL_PRICE}.`
-                  : `${INSTALLMENT_MONTHS} termijnen (totaal €${INSTALLMENT_MONTHLY_PRICE * INSTALLMENT_MONTHS}).`}
+                Volledige oplevering binnen 48 uur, inclusief support na livegang.
               </div>
             </div>
 
-            <p className="text-center text-sm font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-lg py-2 px-3 mb-8">
-              Nog maar {availableSpots} plekken beschikbaar van de 50.
-            </p>
-
-            {/* Features List */}
             <div className="space-y-4 mb-8">
               {features.map((feature, index) => (
                 <div
@@ -161,10 +82,9 @@ export function SimplePricingSection() {
               ))}
             </div>
 
-            {/* CTA Button */}
             <Link href="/order" className="block">
               <Button size="lg" className="w-full text-base group transition-all hover:scale-105 hover:shadow-lg">
-                Controleer beschikbaarheid
+                Plan jouw website nu
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -172,23 +92,11 @@ export function SimplePricingSection() {
               <div className="text-center mt-6 space-y-3">
                 <p className="text-sm text-gray-700">
                   <span className="font-semibold block">Garantie</span>
-                  Niet tevreden? 100% geld terug binnen 48 uur — zonder vragen.
+                  Niet tevreden in de eerste 48 uur na oplevering? Dan krijg je je geld terug.
                 </p>
                 <p className="text-sm text-gray-700">
-                  <span className="font-semibold block">Beschikbaarheid</span>
-                  We nemen maximaal 5 projecten per dag aan om kwaliteit te garanderen.
-                  <br />
-                  Tijdelijk aanbod: €400 promotieprijs — normaal €499.
-                  <br />
-                  Alleen voor de eerste 50 klanten.
-                </p>
-                <p
-                  aria-live="polite"
-                  aria-atomic="true"
-                  aria-label={`Nog maar ${availableSpots} van de ${PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.`}
-                  className="text-sm font-medium text-blue-700"
-                >
-                  Nog maar {availableSpots} van de {PROMOTION_SPOTS_TOTAL} promotieplekken beschikbaar.
+                  <span className="font-semibold block">Wat je van ons krijgt</span>
+                  Volledige uitvoering door ons team. Jij hoeft geen technische tools of beheer te doen.
                 </p>
               </div>
             </div>
@@ -206,7 +114,7 @@ export function SimplePricingSection() {
               </p>
               </div>
 
-              <div ref={showcaseRef} className="overflow-x-auto pb-2 -mx-1 px-1 scroll-smooth snap-x snap-mandatory">
+              <div className="overflow-x-auto pb-2 -mx-1 px-1 scroll-smooth snap-x snap-mandatory">
                 <div className="flex gap-5 min-w-max items-stretch">
               {examples.map((example, index) => (
                 <article

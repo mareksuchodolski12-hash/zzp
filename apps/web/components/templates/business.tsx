@@ -27,6 +27,14 @@ export function BusinessTemplate() {
             <a href="#contact" className="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Vraag offerte aan</a>
           </div>
         </div>
+        <div className="md:hidden border-t border-gray-200 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 text-sm">
+            <a href="#diensten" className="text-gray-600 hover:text-gray-900 transition-colors">Diensten</a>
+            <a href="#projecten" className="text-gray-600 hover:text-gray-900 transition-colors">Projecten</a>
+            <a href="#prijzen" className="text-gray-600 hover:text-gray-900 transition-colors">Pakketten</a>
+            <a href="#contact" className="text-blue-700 font-semibold hover:text-blue-800 transition-colors">Offerte</a>
+          </div>
+        </div>
       </nav>
 
       <section className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">

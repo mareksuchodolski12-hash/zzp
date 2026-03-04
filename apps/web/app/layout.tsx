@@ -4,17 +4,17 @@ import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: {
-    default: 'ZZP Website Platform | Ready-Made Websites for Self-Employed Professionals',
-    template: '%s | ZZP Website Platform',
+    default: 'WebsitePilot.nl | Professionele websites in 48 uur',
+    template: '%s | WebsitePilot.nl',
   },
   description:
-    'Launch your professional website in 24 hours. Ready-made templates for ZZP professionals, freelancers and consultants.',
-  keywords: ['ZZP', 'website', 'freelancer', 'self-employed', 'professional website', 'template'],
+    'Professionele website in 48 uur, volledig door ons geregeld. Eén vaste prijs, geen contracten en geen verborgen kosten.',
+  keywords: ['website laten maken', 'website in 48 uur', 'zzp website', 'full-service webdesign', 'websitepilot'],
   openGraph: {
     type: 'website',
     locale: 'nl_NL',
-    url: 'https://zzp-platform.nl',
-    siteName: 'ZZP Website Platform',
+    url: 'https://www.websitepilot.nl',
+    siteName: 'WebsitePilot.nl',
   },
 };
 

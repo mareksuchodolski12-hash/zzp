@@ -4,20 +4,20 @@ const steps = [
   {
     icon: Layout,
     number: 1,
-    title: 'Kies een template',
-    description: 'Selecteer een professioneel ontworpen template die perfect past bij jouw vakgebied.',
+    title: 'Bestellen en intake',
+    description: 'Je kiest je pakket, doet je aanvraag en deelt je bedrijfsgegevens, voorkeuren en voorbeelden.',
   },
   {
     icon: FileText,
     number: 2,
-    title: 'Vul je gegevens in',
-    description: 'Voer je bedrijfsgegevens, teksten en afbeeldingen in via ons eenvoudige formulier.',
+    title: 'Wij bouwen alles voor je',
+    description: 'Ons team schrijft, ontwerpt en verwerkt content. Jij hoeft niets zelf te editen of beheren.',
   },
   {
     icon: CheckCircle,
     number: 3,
-    title: 'Website live binnen 48 uur',
-    description: 'Wij zetten alles live. Jouw website is binnen 48 uur online en klaar voor klanten.',
+    title: 'Livegang binnen 48 uur',
+    description: 'Na jouw akkoord zetten wij de website live, inclusief technische check, snelheid en basis SEO.',
   },
 ];
 
@@ -26,9 +26,9 @@ export function ProcessSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Jouw weg naar een website in 3 stappen</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Hoe werkt het?</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Eenvoudig, snel en zonder gedoe. Volg deze drie stappen en je bent klaar.
+            Een strak proces zonder gedoe: jij levert input, wij doen de volledige uitvoering.
           </p>
         </div>
 

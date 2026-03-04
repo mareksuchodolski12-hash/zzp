@@ -29,8 +29,8 @@ The ZZP Website Platform is a SaaS system that automates the creation and deploy
               └──────┬─────────────┬───────┘
                      │             │
         ┌────────────▼─┐    ┌──────▼────────────┐
-        │  Neon (Neon) │    │   Sanity CMS       │
-        │  PostgreSQL  │    │  (per client)      │
+        │  Neon (Neon) │    │   Cloudflare DNS   │
+        │  PostgreSQL  │    │   + SSL routing    │
         └──────────────┘    └───────────────────┘
 ```
 

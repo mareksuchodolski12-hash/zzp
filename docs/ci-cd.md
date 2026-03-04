@@ -54,11 +54,10 @@ Triggered by:
 **Steps:**
 
 1. **Create Vercel Project** — Creates a new project with client environment variables
-2. **Initialize Sanity CMS** — Runs `scripts/init-client-cms.mjs` to create a new Sanity project
-3. **Register DNS** — Runs `scripts/register-dns.mjs` to add CNAME records in Cloudflare
-4. **Deploy Template** — Deploys the chosen template to Vercel
-5. **Update Order Status** — Calls the internal API to mark the order as `deployed`
-6. **Notify** — Logs completion
+2. **Register DNS** — Runs `scripts/register-dns.mjs` to add CNAME records in Cloudflare
+3. **Deploy Template** — Deploys the chosen template to Vercel
+4. **Update Order Status** — Calls the internal API to mark the order as `deployed`
+5. **Notify** — Logs completion
 
 ## Required Secrets
 
@@ -67,8 +66,6 @@ Configure these in GitHub Settings → Secrets:
 | Secret | Description |
 |---|---|
 | `VERCEL_TOKEN` | Vercel API token with deploy access |
-| `SANITY_AUTH_TOKEN` | Sanity API token |
-| `SANITY_ORGANIZATION_ID` | Sanity organization ID |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API token with Zone:Edit |
 | `CLOUDFLARE_ZONE_ID` | Cloudflare zone ID |
 | `APP_URL` | Production app URL (`https://zzp-platform.nl`) |

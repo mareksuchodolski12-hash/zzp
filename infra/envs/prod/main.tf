@@ -23,10 +23,6 @@ variable "neon_api_key" {
   type      = string
   sensitive = true
 }
-variable "sanity_auth_token" {
-  type      = string
-  sensitive = true
-}
 variable "grafana_cloud_api_key" {
   type      = string
   sensitive = true
@@ -60,12 +56,6 @@ module "neon" {
   project_name  = "zzp-prod"
   region        = "aws-eu-west-1"
   database_name = "zzp"
-}
-
-module "sanity" {
-  source            = "../../modules/sanity"
-  sanity_auth_token = var.sanity_auth_token
-  project_name      = "ZZP Platform Production"
 }
 
 module "grafana" {

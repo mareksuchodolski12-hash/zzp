@@ -7,17 +7,22 @@ const faqs = [
   {
     question: 'Hoe werkt levering binnen 48 uur?',
     answer:
-      'Zodra je je bestelling plaatst en betaalt, gaan we direct aan het werk. Wij zetten je website samen met de template en jouw gegevens. Binnen 48 uur is je website live en online.',
+      'Na je bestelling starten we direct met intake, opbouw en afwerking. Binnen 48 uur leveren we je website live op, inclusief technische controle.',
   },
   {
-    question: 'Kan ik later wijzigingen laten uitvoeren?',
+    question: 'Moet ik zelf iets beheren of aanpassen?',
     answer:
-      'Ja, zeker. Na oplevering kun je wijzigingen altijd doorgeven en ons technisch team voert deze professioneel voor je door.',
+      'Nee. Je hoeft geen technische tools te gebruiken. Je geeft wijzigingen door en wij voeren die voor je uit.',
   },
   {
-    question: 'Is hosting inbegrepen?',
+    question: 'Zijn er contracten of verborgen kosten?',
     answer:
-      'Ja, hosting is volledig inbegrepen in de prijs. Je profiteert nu van €400 als tijdelijk aanbod (normale prijs €499). Geen verborgen kosten.',
+      'Nee. Je betaalt één vaste prijs voor oplevering. Geen verplichte langlopende contracten en geen verborgen kosten.',
+  },
+  {
+    question: 'Kan ik na livegang nog teksten en foto’s laten aanpassen?',
+    answer:
+      'Ja. Stuur je gewenste wijzigingen door en ons team verwerkt die professioneel en snel voor je.',
   },
 ];
 
@@ -28,9 +33,9 @@ export function FaqSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Veel gestelde vragen</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Veelgestelde vragen</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Antwoorden op de vragen die onze klanten het meest stellen.
+            Heldere antwoorden over oplevering, prijs en service.
           </p>
         </div>
 

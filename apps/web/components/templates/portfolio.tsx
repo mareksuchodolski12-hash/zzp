@@ -26,6 +26,13 @@ export function PortfolioTemplate() {
             <a href="#contact" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
           </div>
         </div>
+        <div className="md:hidden border-t border-gray-200 px-4 py-3">
+          <div className="flex items-center justify-between gap-4 text-sm">
+            <a href="#portfolio" className="text-gray-600 hover:text-gray-900 transition-colors">Realisaties</a>
+            <a href="#pakketten" className="text-gray-600 hover:text-gray-900 transition-colors">Pakketten</a>
+            <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+          </div>
+        </div>
       </nav>
 
       <section className="py-20 md:py-24 bg-gradient-to-b from-green-50 to-white">

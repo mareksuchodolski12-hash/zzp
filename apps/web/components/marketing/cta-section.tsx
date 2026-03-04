@@ -6,14 +6,14 @@ export function CtaSection() {
   return (
     <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-700">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">Klaar om online te gaan?</h2>
+        <h2 className="text-4xl font-bold text-white mb-4">Klaar voor een professionele website zonder gedoe?</h2>
         <p className="text-xl text-blue-100 mb-8 max-w-xl mx-auto">
-          Jouw professionele website is binnen 48 uur live. Kies nu je aanbod en voorbeelden.
+          Wij regelen design, opbouw en livegang binnen 48 uur. Jij focust op je klanten, wij doen de rest.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/order">
             <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50 text-base px-8 group transition-all hover:scale-105 hover:shadow-lg">
-              Bestel nu voor €400
+              Start voor €400
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

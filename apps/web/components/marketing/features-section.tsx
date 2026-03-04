@@ -28,21 +28,21 @@ const features = [
   },
   {
     icon: Search,
-    title: 'SEO-vriendelijk',
+    title: 'SEO-klaar vanaf dag één',
     description:
       'Technische SEO-basis is standaard ingericht, zodat zoekmachines je website direct correct kunnen indexeren.',
   },
   {
     icon: Shield,
-    title: 'Veilig & snel',
+    title: 'Veilig, snel en stabiel',
     description:
       'SSL, performance-optimalisatie en betrouwbare managed hosting zijn standaard onderdeel van de oplevering.',
   },
   {
     icon: Edit,
-    title: 'Doorlopend beheerd',
+    title: 'Volledige service zonder beheerlast',
     description:
-      'Updates aan teksten en afbeeldingen worden uitgevoerd door ons technisch team, zonder dat jij een CMS nodig hebt.',
+      'Je hoeft niets zelf te beheren: teksten, foto’s en secties passen wij voor je aan op aanvraag.',
   },
 ];
 
@@ -51,9 +51,9 @@ export function FeaturesSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Alles wat je nodig hebt</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Waarom kiezen voor WebsitePilot?</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Wij nemen de volledige technische uitvoering uit handen, zodat jij je kunt focussen op groei en klanten.
+            Wij leveren een professionele website met complete uitvoering, zodat jij je volledig op klanten en werk kunt richten.
           </p>
         </div>
 
