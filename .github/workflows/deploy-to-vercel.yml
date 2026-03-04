@@ -1,0 +1,47 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: ["main", "master"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate required Sanity env vars
+        run: |
+          REQUIRED_VARS=(
+            "SANITY_STUDIO_PROJECT_ID"
+            "SANITY_STUDIO_DATASET"
+            "NEXT_PUBLIC_SANITY_PROJECT_ID"
+            "NEXT_PUBLIC_SANITY_DATASET"
+          )
+
+          echo "🔍 Validating Sanity environment variables..."
+          for VAR in "${REQUIRED_VARS[@]}"; do
+            if [ -z "${!VAR}" ]; then
+              echo "❌ ERROR: Missing required environment variable: $VAR"
+              echo "➡️  Set it in GitHub Secrets or Vercel Environment Variables."
+              exit 1
+            fi
+          done
+
+          echo "✅ All required Sanity variables are present."
+        env:
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
