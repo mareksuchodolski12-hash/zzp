@@ -136,17 +136,17 @@ export function SiteHeader() {
           role="navigation"
           aria-label="Mobiele navigatie"
           className={cn(
-            'ml-auto flex h-full w-[85vw] max-w-sm flex-col border-l bg-white px-6 py-6 shadow-2xl transition-all duration-300',
+            'ml-auto flex h-full w-[85vw] max-w-sm flex-col border-l border-white/70 bg-white/95 px-6 py-6 shadow-2xl backdrop-blur-sm transition-all duration-300',
             isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
           )}
           onClick={(event) => event.stopPropagation()}
         >
-          <nav className="mt-4 flex flex-col gap-3">
+          <nav className="mt-4 flex flex-col gap-3 rounded-2xl border border-gray-200 bg-gray-50 p-4">
             {marketingLinks.map((item) => (
               <Link
                 key={`mobile-${item.href}`}
                 href={item.href}
-                className="rounded-md px-1 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:border-gray-200 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 onClick={closeMenu}
               >
                 {item.label}
