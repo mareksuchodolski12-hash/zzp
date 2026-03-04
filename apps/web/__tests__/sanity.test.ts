@@ -37,7 +37,6 @@ describe('resolveSanityProjectId', () => {
     expect(logResolvedSanityConfig()).toEqual({
       projectId: 'public-project',
       dataset: 'production',
-      expectedEnv: 'NEXT_PUBLIC_SANITY_PROJECT_ID',
     });
     expect(consoleInfoSpy).toHaveBeenCalledWith(
       '[sanity] projectId=public-project dataset=production expectedEnv=NEXT_PUBLIC_SANITY_PROJECT_ID'

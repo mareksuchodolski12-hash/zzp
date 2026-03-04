@@ -1,7 +1,13 @@
 import { createClient } from '@sanity/client';
-import { logResolvedSanityConfig } from './sanity-env';
+import { logResolvedSanityConfig, resolveSanityProjectId } from './sanity-env';
 
-const sanityConfig = logResolvedSanityConfig();
+const sanityConfig =
+  process.env.NODE_ENV === 'production'
+    ? {
+        projectId: resolveSanityProjectId(),
+        dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
+      }
+    : logResolvedSanityConfig();
 
 export const sanityClient = createClient({
   projectId: sanityConfig.projectId,

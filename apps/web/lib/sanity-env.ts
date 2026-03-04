@@ -12,5 +12,5 @@ export function logResolvedSanityConfig() {
     `[sanity] projectId=${projectId || '(missing)'} dataset=${dataset} expectedEnv=${SANITY_PROJECT_ID_ENV_VAR}`
   );
 
-  return { projectId, dataset, expectedEnv: SANITY_PROJECT_ID_ENV_VAR };
+  return { projectId, dataset };
 }
