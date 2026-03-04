@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, it, expect } from 'vitest';
-import { resolveSanityProjectId } from '../lib/sanity-env';
+import { logResolvedSanityConfig, resolveSanityProjectId } from '../lib/sanity-env';
 
 describe('resolveSanityProjectId', () => {
   let originalPublicProjectId: string | undefined;
@@ -25,5 +25,16 @@ describe('resolveSanityProjectId', () => {
   it('returns empty string when NEXT_PUBLIC_SANITY_PROJECT_ID is missing', () => {
     delete process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
     expect(resolveSanityProjectId()).toBe('');
+  });
+
+  it('returns diagnostic sanity config values', () => {
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID = 'public-project';
+    process.env.NEXT_PUBLIC_SANITY_DATASET = 'production';
+
+    expect(logResolvedSanityConfig()).toEqual({
+      projectId: 'public-project',
+      dataset: 'production',
+      expectedEnvVar: 'NEXT_PUBLIC_SANITY_PROJECT_ID',
+    });
   });
 });

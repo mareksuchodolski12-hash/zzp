@@ -1,9 +1,11 @@
 import { createClient } from '@sanity/client';
-import { resolveSanityProjectId } from './sanity-env';
+import { logResolvedSanityConfig } from './sanity-env';
+
+const sanityConfig = logResolvedSanityConfig();
 
 export const sanityClient = createClient({
-  projectId: resolveSanityProjectId(),
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
+  projectId: sanityConfig.projectId,
+  dataset: sanityConfig.dataset,
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN,
