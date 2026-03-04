@@ -5,6 +5,7 @@ import { join } from 'node:path';
 describe('static routes', () => {
   const appDir = join(process.cwd(), 'app');
   const marketingComponentsDir = join(process.cwd(), 'components', 'marketing');
+  const layoutComponentsDir = join(process.cwd(), 'components', 'layout');
 
   it('preview layout does not define nested html/body tags', () => {
     const previewLayout = readFileSync(join(appDir, '(preview)', 'layout.tsx'), 'utf-8');
@@ -53,5 +54,17 @@ describe('static routes', () => {
     expect(testimonialsSection).toContain('LenaSinger.nl');
     expect(testimonialsSection).toContain('MSHydroPro.nl');
     expect(testimonialsSection).toContain('SystemPilot.nl');
+  });
+
+  it('site header supports accessible mobile navigation controls', () => {
+    const siteHeader = readFileSync(join(layoutComponentsDir, 'site-header.tsx'), 'utf-8');
+
+    expect(siteHeader).toContain('aria-expanded={isOpen}');
+    expect(siteHeader).toContain('aria-controls="mobile-tablet-menu"');
+    expect(siteHeader).toContain('aria-label={isOpen ?');
+    expect(siteHeader).toContain("event.key === 'Escape'");
+    expect(siteHeader).toContain("event.key !== 'Tab'");
+    expect(siteHeader).toContain("document.body.style.overflow = 'hidden'");
+    expect(siteHeader).toContain('role="navigation"');
   });
 });
