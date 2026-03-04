@@ -4,9 +4,13 @@ import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <div className="container mx-auto px-4 text-center">
-        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm font-medium px-4 py-2 rounded-full mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <section className="py-24 md:py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 -right-40 w-80 h-80 bg-blue-300 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-40 w-80 h-80 bg-purple-300 rounded-full blur-3xl"></div>
+      </div>
+      <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 text-blue-700 text-sm font-medium px-4 py-2 rounded-full mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
           WebsitePilot.nl • Full-service website oplevering
         </div>
@@ -21,7 +25,7 @@ export function HeroSection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
           <Link href="/order">
-            <Button size="lg" className="text-base px-8 group transition-all hover:scale-105 hover:shadow-lg">
+            <Button size="lg" className="text-base px-8 group transition-all hover:scale-105 hover:shadow-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800">
               Bestel nu voor €400
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -36,23 +40,23 @@ export function HeroSection() {
 
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-gray-500 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
             Professioneel design
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
             Geen contracten
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
             Eén vaste all-in prijs
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
             Volledig door ons beheerd
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-500" />
+            <CheckCircle className="w-5 h-5 text-emerald-500" />
             Oplevering binnen 48 uur
           </div>
         </div>

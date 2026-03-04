@@ -27,7 +27,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Wat andere ZZP&apos;ers zeggen</h2>
@@ -40,18 +40,18 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
+              className="bg-gradient-to-br from-white to-blue-50/40 p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-lg">
+                  <span key={i} className="text-emerald-500 text-lg">
                     ★
                   </span>
                 ))}
               </div>
               <p className="text-gray-700 text-sm leading-relaxed mb-6">&ldquo;{testimonial.content}&rdquo;</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-semibold text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center font-semibold text-sm">
                   {testimonial.avatar}
                 </div>
                 <div>
