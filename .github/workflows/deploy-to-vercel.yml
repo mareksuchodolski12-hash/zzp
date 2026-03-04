@@ -24,8 +24,6 @@ jobs:
       - name: Validate required Sanity env vars
         run: |
           REQUIRED_VARS=(
-            "SANITY_STUDIO_PROJECT_ID"
-            "SANITY_STUDIO_DATASET"
             "NEXT_PUBLIC_SANITY_PROJECT_ID"
             "NEXT_PUBLIC_SANITY_DATASET"
             "VERCEL_TOKEN"
@@ -42,8 +40,6 @@ jobs:
 
           echo "✅ All required environment variables are present."
         env:
-          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
-          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -54,8 +50,6 @@ jobs:
       - name: Build project
         run: npm run build
         env:
-          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
-          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
 
