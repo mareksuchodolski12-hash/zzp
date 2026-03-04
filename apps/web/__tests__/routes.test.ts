@@ -65,6 +65,8 @@ describe('static routes', () => {
     expect(siteHeader).toContain("event.key === 'Escape'");
     expect(siteHeader).toContain("event.key !== 'Tab'");
     expect(siteHeader).toContain("document.body.style.overflow = 'hidden'");
+    expect(siteHeader).toContain("document.documentElement.style.overflowX = 'clip'");
+    expect(siteHeader).toContain('scrollbarWidth > 0 ? `${scrollbarWidth}px` : \'0px\'');
     expect(siteHeader).toContain('role="navigation"');
   });
 });

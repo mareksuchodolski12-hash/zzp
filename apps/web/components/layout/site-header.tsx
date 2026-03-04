@@ -26,10 +26,18 @@ export function SiteHeader() {
     }
 
     const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const previousHtmlOverflowX = document.documentElement.style.overflowX;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+    document.documentElement.style.overflowX = 'clip';
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : '0px';
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
+      document.documentElement.style.overflowX = previousHtmlOverflowX;
     };
   }, [isOpen]);
 
@@ -104,7 +112,7 @@ export function SiteHeader() {
         <button
           ref={menuButtonRef}
           type="button"
-          className="p-2 text-gray-600 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:hidden"
+          className="rounded-md border border-gray-200 bg-white p-2 text-gray-700 shadow-sm transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:hidden"
           onClick={() => setIsOpen((previous) => !previous)}
           aria-expanded={isOpen}
           aria-controls="mobile-tablet-menu"
@@ -116,7 +124,7 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          'fixed inset-x-0 bottom-0 top-[var(--site-header-height)] z-40 bg-black/40 transition-opacity duration-300 lg:hidden',
+          'fixed inset-x-0 bottom-0 top-[var(--site-header-height)] z-40 bg-black/50 backdrop-blur-[1px] transition-opacity duration-300 lg:hidden',
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
         onClick={closeMenu}
@@ -128,7 +136,7 @@ export function SiteHeader() {
           role="navigation"
           aria-label="Mobiele navigatie"
           className={cn(
-            'ml-auto flex h-full w-full max-w-xs flex-col border-l bg-white px-6 py-6 shadow-xl transition-all duration-300',
+            'ml-auto flex h-full w-[85vw] max-w-sm flex-col border-l bg-white px-6 py-6 shadow-2xl transition-all duration-300',
             isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
           )}
           onClick={(event) => event.stopPropagation()}
