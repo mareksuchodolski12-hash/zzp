@@ -1,7 +1,8 @@
 import { createClient } from '@sanity/client';
+import { resolveSanityProjectId } from './sanity-env';
 
 export const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? '',
+  projectId: resolveSanityProjectId(),
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
