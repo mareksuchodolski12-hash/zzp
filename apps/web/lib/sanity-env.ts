@@ -1,7 +1,8 @@
 export const SANITY_PROJECT_ID_ENV_VAR = 'NEXT_PUBLIC_SANITY_PROJECT_ID';
+export const SANITY_PROJECT_ID = '5bnnldbo';
 
 export function resolveSanityProjectId() {
-  return process.env[SANITY_PROJECT_ID_ENV_VAR] || '';
+  return SANITY_PROJECT_ID;
 }
 
 export function logResolvedSanityConfig() {

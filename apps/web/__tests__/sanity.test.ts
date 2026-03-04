@@ -19,14 +19,14 @@ describe('resolveSanityProjectId', () => {
     vi.restoreAllMocks();
   });
 
-  it('returns NEXT_PUBLIC_SANITY_PROJECT_ID when set', () => {
+  it('returns hardcoded project id when NEXT_PUBLIC_SANITY_PROJECT_ID is set', () => {
     process.env.NEXT_PUBLIC_SANITY_PROJECT_ID = 'public-project';
-    expect(resolveSanityProjectId()).toBe('public-project');
+    expect(resolveSanityProjectId()).toBe('5bnnldbo');
   });
 
-  it('returns empty string when NEXT_PUBLIC_SANITY_PROJECT_ID is missing', () => {
+  it('returns hardcoded project id when NEXT_PUBLIC_SANITY_PROJECT_ID is missing', () => {
     delete process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    expect(resolveSanityProjectId()).toBe('');
+    expect(resolveSanityProjectId()).toBe('5bnnldbo');
   });
 
   it('returns diagnostic sanity config values', () => {
@@ -35,11 +35,11 @@ describe('resolveSanityProjectId', () => {
     const consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
 
     expect(logResolvedSanityConfig()).toEqual({
-      projectId: 'public-project',
+      projectId: '5bnnldbo',
       dataset: 'production',
     });
     expect(consoleInfoSpy).toHaveBeenCalledWith(
-      '[sanity] projectId=public-project dataset=production expectedEnv=NEXT_PUBLIC_SANITY_PROJECT_ID'
+      '[sanity] projectId=5bnnldbo dataset=production expectedEnv=NEXT_PUBLIC_SANITY_PROJECT_ID'
     );
   });
 });
