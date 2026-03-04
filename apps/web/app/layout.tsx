@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { buildGtmNoScriptSrc, buildGtmScript } from '@/lib/gtm';
 
 export const metadata: Metadata = {
   title: {
@@ -19,9 +20,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+
   return (
     <html lang="nl" suppressHydrationWarning>
+      <head>
+        {gtmId ? <script id="google-tag-manager" dangerouslySetInnerHTML={{ __html: buildGtmScript(gtmId) }} /> : null}
+      </head>
       <body className="font-sans">
+        {gtmId ? (
+          <noscript>
+            <iframe
+              src={buildGtmNoScriptSrc(gtmId)}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        ) : null}
         {children}
         <Toaster />
       </body>
