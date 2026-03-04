@@ -19,8 +19,7 @@ describe('resolveSanityProjectId', () => {
     vi.restoreAllMocks();
   });
 
-  it('returns hardcoded project id when NEXT_PUBLIC_SANITY_PROJECT_ID is set', () => {
-    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID = 'public-project';
+  it('returns hardcoded project id', () => {
     expect(resolveSanityProjectId()).toBe('5bnnldbo');
   });
 
@@ -39,7 +38,7 @@ describe('resolveSanityProjectId', () => {
       dataset: 'production',
     });
     expect(consoleInfoSpy).toHaveBeenCalledWith(
-      '[sanity] projectId=5bnnldbo dataset=production expectedEnv=NEXT_PUBLIC_SANITY_PROJECT_ID'
+      '[sanity] projectId=5bnnldbo dataset=production'
     );
   });
 });

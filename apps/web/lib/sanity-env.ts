@@ -1,4 +1,3 @@
-export const SANITY_PROJECT_ID_ENV_VAR = 'NEXT_PUBLIC_SANITY_PROJECT_ID';
 export const SANITY_PROJECT_ID = '5bnnldbo';
 
 export function resolveSanityProjectId() {
@@ -10,7 +9,7 @@ export function logResolvedSanityConfig() {
   const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production';
 
   console.info(
-    `[sanity] projectId=${projectId || '(missing)'} dataset=${dataset} expectedEnv=${SANITY_PROJECT_ID_ENV_VAR}`
+    `[sanity] projectId=${projectId || '(missing)'} dataset=${dataset}`
   );
 
   return { projectId, dataset };
