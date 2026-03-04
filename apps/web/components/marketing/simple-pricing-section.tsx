@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -15,8 +16,7 @@ const examples = [
     description: 'klaar in 36 uur',
     domain: 'LenaSinger.nl',
     href: 'https://lenasinger.nl',
-    tone: 'from-pink-100 via-purple-100 to-white',
-    accent: 'bg-pink-500/80',
+    screenshot: '/examples/lenasinger.jpg',
     summary:
       'Sterke uitstraling, duidelijke positionering en een website die vertrouwen uitstraalt.',
     deliverables: 'Branding, contentstructuur, SEO-basis en conversiegerichte secties opgeleverd.',
@@ -26,8 +26,7 @@ const examples = [
     description: 'klaar in 41 uur',
     domain: 'MSHydroPro.nl',
     href: 'https://mshydropro.nl',
-    tone: 'from-sky-100 via-cyan-100 to-white',
-    accent: 'bg-sky-600/80',
+    screenshot: '/examples/mshydropro.jpg',
     summary:
       'Diensten helder gepresenteerd met duidelijke call-to-actions voor nieuwe aanvragen.',
     deliverables: 'Dienstenpagina, intake-flow, lokale SEO en duidelijke lead-opvolging ingericht.',
@@ -37,8 +36,7 @@ const examples = [
     description: 'klaar in 44 uur',
     domain: 'SystemPilot.nl',
     href: 'https://systempilot.nl',
-    tone: 'from-indigo-100 via-blue-100 to-white',
-    accent: 'bg-indigo-600/80',
+    screenshot: '/examples/systempilot.jpg',
     summary:
       'Zakelijke opzet met duidelijke propositie en een strakke, professionele layout.',
     deliverables: 'Servicecatalogus, trust-secties, performance-optimalisatie en analytics live gezet.',
@@ -119,7 +117,7 @@ export function SimplePricingSection() {
               {examples.map((example, index) => (
                 <article
                   key={example.title}
-                  className="group w-[340px] sm:w-[360px] bg-white rounded-2xl border border-blue-100 p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 h-full min-h-[372px] flex flex-col snap-start"
+                  className="group w-[86vw] max-w-[360px] sm:w-[360px] bg-white rounded-2xl border border-blue-100 p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 h-full min-h-[372px] flex flex-col snap-start"
                   style={{ animationDelay: `${(index + 1) * 100}ms` }}
                 >
                   <a
@@ -129,31 +127,15 @@ export function SimplePricingSection() {
                     className="block"
                     aria-label={`Open voorbeeldsite ${example.domain}`}
                   >
-                    <div className={`aspect-video rounded-xl bg-gradient-to-br ${example.tone} border border-blue-200 p-2 mb-4 group-hover:border-blue-400 transition-colors`}>
-                      <div className="h-full w-full rounded-lg bg-white border border-slate-200 overflow-hidden shadow-sm">
-                        <div className="h-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between px-2">
-                          <div className="flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-300" />
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-300" />
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-                          </div>
-                          <span className="text-[8px] font-semibold text-slate-500 uppercase tracking-wide">Live preview</span>
-                        </div>
-                        <div className="p-2.5">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="h-1.5 w-14 bg-slate-300 rounded" />
-                            <div className={`h-1.5 w-8 rounded ${example.accent}`} />
-                          </div>
-                          <div className="h-6 rounded bg-slate-200 mb-2" />
-                          <div className="h-1.5 w-4/5 bg-slate-200 rounded mb-1.5" />
-                          <div className="h-1.5 w-3/5 bg-slate-200 rounded mb-2.5" />
-                          <div className="grid grid-cols-3 gap-1.5">
-                            <div className="h-5 rounded bg-slate-200" />
-                            <div className="h-5 rounded bg-slate-200" />
-                            <div className="h-5 rounded bg-slate-200" />
-                          </div>
-                        </div>
-                      </div>
+                    <div className="aspect-video rounded-xl border border-blue-200 overflow-hidden mb-4 group-hover:border-blue-400 transition-colors bg-white">
+                      <Image
+                        src={example.screenshot}
+                        alt={`Screenshot van ${example.domain}`}
+                        width={1200}
+                        height={675}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
                     </div>
                   </a>
                   <div className="flex items-start justify-between gap-2 mb-1 min-h-[2.75rem]">
