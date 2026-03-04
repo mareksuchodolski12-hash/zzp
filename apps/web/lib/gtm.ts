@@ -1,3 +1,14 @@
+const GTM_ID_PATTERN = /^GTM-[A-Z0-9]+$/;
+
+export function normalizeGtmId(gtmId?: string): string | null {
+  if (!gtmId) {
+    return null;
+  }
+
+  const normalized = gtmId.trim();
+  return GTM_ID_PATTERN.test(normalized) ? normalized : null;
+}
+
 export function buildGtmScript(gtmId: string): string {
   return `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

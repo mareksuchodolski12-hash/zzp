@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { buildGtmNoScriptSrc, buildGtmScript } from '@/lib/gtm';
+import { buildGtmNoScriptSrc, buildGtmScript, normalizeGtmId } from '@/lib/gtm';
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  const gtmId = normalizeGtmId(process.env.NEXT_PUBLIC_GTM_ID);
 
   return (
     <html lang="nl" suppressHydrationWarning>
