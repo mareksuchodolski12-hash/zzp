@@ -25,19 +25,36 @@ export function SiteHeader() {
       return;
     }
 
+    const scrollY = window.scrollY;
     const previousOverflow = document.body.style.overflow;
     const previousPaddingRight = document.body.style.paddingRight;
+    const previousPosition = document.body.style.position;
+    const previousTop = document.body.style.top;
+    const previousLeft = document.body.style.left;
+    const previousRight = document.body.style.right;
+    const previousWidth = document.body.style.width;
     const previousHtmlOverflowX = document.documentElement.style.overflowX;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     document.documentElement.style.overflowX = 'clip';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = scrollbarWidth > 0 ? `${scrollbarWidth}px` : '0px';
 
     return () => {
       document.body.style.overflow = previousOverflow;
       document.body.style.paddingRight = previousPaddingRight;
+      document.body.style.position = previousPosition;
+      document.body.style.top = previousTop;
+      document.body.style.left = previousLeft;
+      document.body.style.right = previousRight;
+      document.body.style.width = previousWidth;
       document.documentElement.style.overflowX = previousHtmlOverflowX;
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen]);
 
