@@ -11,7 +11,7 @@ export function SiteFooter() {
               <BrandLogo inverted />
             </div>
             <p className="text-sm text-gray-400 max-w-xs">
-              Professionele websites voor ZZP&apos;ers. Snel live, geen gedoe, eerlijke prijs.
+              Premium websites voor ZZP&apos;ers: volledig gebouwd, snel live, eenmalige investering.
             </p>
           </div>
 

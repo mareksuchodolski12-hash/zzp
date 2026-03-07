@@ -43,9 +43,9 @@ const features = [
   },
   {
     icon: Shield,
-    title: 'Veilig, snel en stabiel',
+    title: 'Enterprise-grade beveiliging',
     description:
-      'SSL, performance-optimalisatie en betrouwbare managed hosting zijn standaard onderdeel van de oplevering.',
+      'SSL-encryptie, performance-optimalisatie en betrouwbare managed hosting zijn standaard onderdeel van je website.',
   },
   {
     icon: Edit,

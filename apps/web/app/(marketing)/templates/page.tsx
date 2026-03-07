@@ -47,10 +47,10 @@ const templates: Array<{
   {
     id: 'portfolio',
     previewSlug: 'ogrodnik',
-    name: 'Usługi zewnętrzne i ogrodowe',
+    name: 'Tuin & Tuinonderhoud',
     description:
-      'Stworzony dla hovenierów, ogrodników, landscaperów i serwisu zewnętrznego, by pokazać realizacje i zamieniać wejścia w zapytania.',
-    tags: ['Hovenier', 'Ogrodnik', 'Landscaper'],
+      'Perfect voor hoveniers, tuinarchitecten, landscapers en tuinondernemers die hun werk willen tonen en meer aanvragen willen binnenhalen.',
+    tags: ['Hovenier', 'Tuinarchitect', 'Landscaper', 'Tuinonderhoud'],
     previewUrl: '/preview/ogrodnik',
     thumbnailUrl: '/images/template-portfolio.jpg',
     color: 'green',
@@ -63,10 +63,10 @@ export default function TemplatesPage() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-            Wybierz premium szablon dla swojej działalności ZZP
+            Kies premium templates voor jouw ZZP-activiteit
           </h1>
           <p className="text-lg md:text-xl text-gray-600">
-            Trzy najczęstsze i najbardziej dochodowe branże ZZP w Holandii, gotowe do szybkiej sprzedaży online.
+            De drie meest gekozen en winstgevende ZZP-branches in Nederland, klaar voor snelle online omzet.
           </p>
         </div>
         <article className="group mb-20 max-w-6xl mx-auto overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl animate-in fade-in slide-in-from-bottom-4">

@@ -17,7 +17,7 @@ export function CtaSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/order">
             <Button size="lg" className="bg-white text-blue-700 hover:bg-emerald-50 text-base px-8 group transition-all hover:scale-105 hover:shadow-xl font-semibold">
-              Start voor €400
+              Start voor €690
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>

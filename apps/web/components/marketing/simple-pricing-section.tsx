@@ -60,10 +60,10 @@ const plans: PricingPlan[] = [
 ];
 
 const trustHighlights = [
-  'Geen WordPress-rommel',
-  'Volledig door ons gebouwd',
-  'Snel live',
-  'Betalen in termijnen mogelijk',
+  'Custom-gemaakt, niet uit sjablonen',
+  'Bouwprocesvolledige transparantie',
+  '48-uur doorlooptijd',
+  'Flexibele betaalplannen',
 ];
 
 const paymentOptions = [

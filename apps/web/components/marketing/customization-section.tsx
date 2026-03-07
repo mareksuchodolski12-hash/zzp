@@ -3,23 +3,23 @@ import { CheckCircle2, Palette, ImageIcon, Type, LayoutPanelTop } from 'lucide-r
 const items = [
   {
     icon: Type,
-    title: 'Teksten en koppen',
-    description: 'Aanpassen van titels, beschrijvingen, diensten en call-to-actions op basis van jouw aanbod.',
+    title: 'Teksten & koppen',
+    description: 'Alle titels, beschrijvingen, diensten en call-to-actions aanpassen en optimaliseren voor jouw doelgroep.',
   },
   {
     icon: ImageIcon,
-    title: 'Foto’s en visuals',
-    description: 'Vervangen of optimaliseren van afbeeldingen zodat je website professioneel en betrouwbaar oogt.',
+    title: 'Foto\'s & beelden',
+    description: 'Afbeeldingen vervangen, toesnijden en optimaliseren zodat je website professioneel en premium oogt.',
   },
   {
     icon: Palette,
-    title: 'Kleuren en stijl',
-    description: 'Afstemmen van kleurgebruik en uitstraling op jouw merk, doelgroep en branche.',
+    title: 'Kleuren & branding',
+    description: 'Alle kleurkeuzes en stijlelementen afstemmen op je merk, brand guidelines en doelgroep.',
   },
   {
     icon: LayoutPanelTop,
-    title: 'Secties en opbouw',
-    description: 'Secties toevoegen, verplaatsen of verwijderen zodat de pagina perfect aansluit bij jouw bedrijf.',
+    title: 'Layout & structuur',
+    description: 'Secties herindelen, toevoegen of verwijderen zodat de pagina-opbouw perfect aansluit op je bedrijf.',
   },
 ];
 
