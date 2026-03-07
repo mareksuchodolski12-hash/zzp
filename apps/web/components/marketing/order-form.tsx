@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 const WHATSAPP_NUMBER = '31625320367';
 
 const OrderSchema = z.object({
-  plan: z.enum(['starter', 'professional', 'business']),
+  plan: z.enum(['starter', 'business']),
   paymentMode: z.enum(['full', 'installments']),
   businessName: z.string().min(2, 'Bedrijfsnaam is verplicht'),
   fullName: z.string().min(2, 'Volledige naam is verplicht'),
@@ -39,7 +39,7 @@ interface OrderFormProps {
 }
 
 export function OrderForm({
-  defaultPlan = 'professional',
+  defaultPlan = 'starter',
   planLocked = false,
 }: OrderFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,6 +47,7 @@ export function OrderForm({
 
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<OrderFormData>({
@@ -57,6 +58,10 @@ export function OrderForm({
     },
   });
 
+  const selectedPlan = watch('plan');
+  const installmentLabel =
+    selectedPlan === 'business' ? 'Termijnen (3x €439, 6x €224, 12x €119)' : 'Termijnen (3x €239, 6x €119, 12x €69)';
+
   async function onSubmit(data: OrderFormData) {
     setIsSubmitting(true);
     setError(null);
@@ -65,8 +70,14 @@ export function OrderForm({
       const lines = [
         'Nieuwe website-aanvraag (handmatig development)',
         '',
-        `Pakket: ${data.plan}`,
-        `Betaalwijze: ${data.paymentMode === 'full' ? 'Volledige betaling' : 'Termijnen (12x €45)'}`,
+        `Pakket: ${data.plan === 'business' ? 'Business' : 'Starter'}`,
+        `Betaalwijze: ${
+          data.paymentMode === 'full'
+            ? 'Volledige betaling'
+            : data.plan === 'business'
+              ? 'Termijnen (3x €439, 6x €224, 12x €119)'
+              : 'Termijnen (3x €239, 6x €119, 12x €69)'
+        }`,
         `Bedrijfsnaam: ${data.businessName}`,
         `Contactpersoon: ${data.fullName}`,
         `E-mail: ${data.email}`,
@@ -102,13 +113,14 @@ export function OrderForm({
           <select
             id="plan"
             {...register('plan')}
-            aria-readonly={true}
-            tabIndex={-1}
+            aria-readonly={planLocked}
+            tabIndex={planLocked ? -1 : 0}
             className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              'pointer-events-none bg-gray-50 text-gray-500'
+              planLocked ? 'pointer-events-none bg-gray-50 text-gray-500' : ''
             }`}
           >
-            <option value="professional">Promotiepakket — €400</option>
+            <option value="starter">Starter - €690 (vanaf €69 / maand)</option>
+            <option value="business">Business - €1290 (vanaf €119 / maand)</option>
           </select>
           {errors.plan && <p className="text-xs text-red-500">{errors.plan.message}</p>}
         </div>
@@ -121,7 +133,7 @@ export function OrderForm({
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <option value="full">Volledige betaling</option>
-            <option value="installments">Termijnen (12x €45)</option>
+            <option value="installments">{installmentLabel}</option>
           </select>
           {errors.paymentMode && <p className="text-xs text-red-500">{errors.paymentMode.message}</p>}
         </div>

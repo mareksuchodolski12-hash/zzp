@@ -3,14 +3,15 @@
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { CheckCircle2 } from 'lucide-react';
-import { OrderForm } from '@/components/marketing/order-form';
+import { OrderWizard } from '@/components/marketing/order-wizard';
 
 function OrderContent() {
   const searchParams = useSearchParams();
-  const plan = searchParams.get('plan') ?? 'professional';
-  const planLocked = searchParams.has('plan');
+  const rawPlan = searchParams.get('plan');
+  const plan = rawPlan === 'starter' || rawPlan === 'business' ? rawPlan : 'starter';
+  const planLocked = rawPlan === 'starter' || rawPlan === 'business';
 
-  return <OrderForm defaultPlan={plan} planLocked={planLocked} />;
+  return <OrderWizard defaultPlan={plan} planLocked={planLocked} />;
 }
 
 export default function OrderPage() {

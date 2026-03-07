@@ -34,15 +34,15 @@ describe('static routes', () => {
     expect(termsPage).toContain('Algemene voorwaarden');
   });
 
-  it('simple pricing section includes garantie and beschikbaarheid messaging', () => {
+  it('simple pricing section includes two-package and installment messaging', () => {
     const pricingSection = readFileSync(join(marketingComponentsDir, 'simple-pricing-section.tsx'), 'utf-8');
 
-    expect(pricingSection).toContain('Één vaste prijs: €{FIXED_PRICE}');
-    expect(pricingSection).toContain('Geen contracten, geen verborgen kosten en geen onverwachte toeslagen.');
-    expect(pricingSection).toContain('Garantie');
-    expect(pricingSection).toContain('Niet tevreden in de eerste 48 uur na oplevering? Dan krijg je je geld terug.');
-    expect(pricingSection).toContain('Volledige uitvoering door ons team.');
-    expect(pricingSection).toContain('Plan jouw website nu');
+    expect(pricingSection).toContain('Kies het pakket dat past bij jouw bedrijf');
+    expect(pricingSection).toContain('Start met Starter');
+    expect(pricingSection).toContain('Kies Business');
+    expect(pricingSection).toContain('Betaling in termijnen tot 12 maanden mogelijk');
+    expect(pricingSection).toContain('Betaalopties');
+    expect(pricingSection).toContain('Geen verborgen kosten. Geen technische rompslomp. Gewoon een snelle, professionele website die werkt.');
   });
 
   it('testimonials section includes updated examples', () => {
@@ -56,17 +56,17 @@ describe('static routes', () => {
     expect(testimonialsSection).toContain('SystemPilot.nl');
   });
 
-  it('site header supports accessible mobile navigation controls', () => {
+  it('site header and mobile menu expose accessible navigation controls', () => {
     const siteHeader = readFileSync(join(layoutComponentsDir, 'site-header.tsx'), 'utf-8');
+    const mobileMenu = readFileSync(join(layoutComponentsDir, 'mobile-menu.tsx'), 'utf-8');
 
-    expect(siteHeader).toContain('aria-expanded={isOpen}');
-    expect(siteHeader).toContain('aria-controls="mobile-tablet-menu"');
-    expect(siteHeader).toContain('aria-label={isOpen ?');
-    expect(siteHeader).toContain("event.key === 'Escape'");
-    expect(siteHeader).toContain("event.key !== 'Tab'");
-    expect(siteHeader).toContain("document.body.style.overflow = 'hidden'");
-    expect(siteHeader).toContain("document.documentElement.style.overflowX = 'clip'");
-    expect(siteHeader).toContain('scrollbarWidth > 0 ? `${scrollbarWidth}px` : \'0px\'');
+    expect(siteHeader).toContain('aria-label="Hoofdnavigatie"');
+    expect(siteHeader).toContain('<MobileMenu />');
+
+    expect(mobileMenu).toContain('aria-expanded={isOpen}');
+    expect(mobileMenu).toContain('aria-controls="mobile-menu"');
+    expect(mobileMenu).toContain('aria-label={isOpen ?');
+    expect(mobileMenu).toContain('aria-label="Mobiele navigatie"');
     expect(siteHeader).toContain('role="navigation"');
   });
 });
